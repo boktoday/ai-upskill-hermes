@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGENTS.md — Module 4: Strategy &amp; Practical Application</title>
+<style>/* AI Upskill — course pages
+   One stylesheet for every lesson, module and the course map.
+   Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
+
+:root {
+  --pink: #E67E9F;
+  --pink-deep: #B4526F;
+  --pink-wash: #FCEFF3;
+  --ink: #131313;
+  --ink-soft: #3A3835;
+  --steel: #738DA0;
+  --steel-wash: #EEF2F5;
+  --paper: #FBF7F2;
+  --card: #FFFFFF;
+  --line: #E3DCD2;
+  --ok: #3F7D5B;
+  --warn: #B26B1F;
+  --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 26px 24px 22px;
+  border-bottom: 5px solid var(--pink);
+}
+
+.masthead .inner { max-width: var(--measure); margin: 0 auto; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.deck { margin: 0; color: #D6D1CA; font-size: 15px; max-width: 34rem; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meta span {
+  background: #262524;
+  border: 1px solid #35322F;
+  color: #EDE9E3;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  padding: 5px 10px;
+}
+
+.meta span b { color: var(--pink); font-weight: 600; }
+.meta span.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+
+/* ---------- body ---------- */
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px 80px; }
+
+.lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 26px 0 4px;
+  padding-left: 16px;
+  border-left: 5px solid var(--pink);
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 44px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2.act { border-bottom-color: var(--pink); }
+h2.act::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--pink);
+  margin-top: -2px;
+}
+
+h3 { font-size: 18px; margin: 28px 0 6px; }
+h4 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin: 22px 0 4px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--pink-deep); text-underline-offset: 2px; }
+
+ul, ol { margin: 6px 0 18px; padding-left: 22px; }
+li { margin: 7px 0; }
+li::marker { color: var(--steel); }
+
+strong { font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #F1EBE3;
+  padding: 2px 6px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--ink);
+  color: #F4EFE7;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  border-left: 4px solid var(--pink);
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; white-space: pre; }
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: var(--pink-wash);
+  border-left: 4px solid var(--pink);
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+/* ---------- tables ---------- */
+
+/* tables scroll sideways on phones rather than crushing the text */
+.tablewrap { overflow-x: auto; margin: 0 0 22px; -webkit-overflow-scrolling: touch; }
+.tablewrap table { margin: 0; min-width: 30rem; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 22px; font-size: 15px; }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #F3EDE5; font-weight: 650; }
+
+/* ---------- components ---------- */
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--steel);
+  background: var(--card);
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.callout.ok { border-left-color: var(--ok); background: #F3F8F4; }
+.callout.warn { border-left-color: var(--warn); background: #FBF4EA; }
+.callout.pink { border-left-color: var(--pink); background: var(--pink-wash); }
+.callout h4 { margin: 0 0 6px; color: inherit; font-size: 13px; letter-spacing: .1em; }
+
+.checklist { list-style: none; padding: 0; margin: 0 0 22px; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.checklist li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px; height: 15px;
+  margin-top: 4px;
+  border: 2px solid var(--ink);
+  background: transparent;
+}
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 22px; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 18px 44px;
+  margin: 0;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 650;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.grid2 > div { background: var(--card); border: 1px solid var(--line); padding: 16px; }
+.grid2 h4 { margin-top: 0; }
+
+/* ---------- footer + nav ---------- */
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 3px solid var(--ink);
+  font-size: 14px;
+}
+.lesson-nav a { display: block; max-width: 48%; }
+
+.foot {
+  margin-top: 26px;
+  color: #6B6660;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- course map ---------- */
+
+.map { list-style: none; padding: 0; margin: 24px 0 0; }
+.map > li { border: 1px solid var(--line); background: var(--card); margin: 0 0 14px; }
+.map .module-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: #F7F2EB;
+}
+.map .module-head h3 { margin: 0; font-size: 17px; }
+.map .module-head span { font-size: 12.5px; color: var(--steel); letter-spacing: .06em; text-transform: uppercase; }
+.map ol { margin: 0; padding: 12px 16px 14px 40px; }
+.map ol li { margin: 5px 0; }
+.map .artefact { color: var(--steel); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+.tile { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--pink); padding: 16px; }
+.tile .big { font-size: clamp(24px, 6vw, 32px); font-weight: 700; letter-spacing: -0.02em; display: block; }
+.tile .label { font-size: 13px; color: var(--steel); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { background: #fff; color: #000; border-bottom: 2pt solid #000; padding: 0 0 10pt; }
+  .masthead h1 { color: #000; }
+  .deck, .meta span { color: #000; }
+  .meta span { border-color: #000; }
+  .lesson-nav, .foot { display: none; }
+  h2 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 12px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .masthead { padding: 20px 18px 18px; }
+  .wrap { padding: 0 18px 64px; }
+}
+</style></head>
+<body>
+<header class="masthead"><div class="inner">
+  <p class="eyebrow">AI Upskill · Module 4</p>
+  <h1>AGENTS.md — Module 4: Strategy &amp; Practical Application</h1>
+  <p class="deck">Where AI pays, where it costs, and where it must not go</p>
+  <div class="meta"><span>Module <b>4 of 5</b></span><span>About <b>45 min</b></span></div>
+</div></header>
+<main class="wrap">
+<h2>Role</h2>
+<p>Teach AI strategy, ethical considerations, practical implementation, and business application of AI agents</p>
+<h2>Agent ID</h2>
+<p><code>module-4-strategy-ethics</code></p>
+<h2>Duration</h2>
+<p>45 minutes</p>
+<h2>Learning Objectives</h2>
+<p>By the end of this module, students will be able to:</p>
+<ol><li>Develop an AI strategy aligned with business goals</li><li>Identify high-impact use cases for AI agents in their industry</li><li>Navigate ethical considerations and responsible AI practices</li><li>Measure ROI and success of AI implementations</li><li>Build a roadmap for AI adoption in their organisation</li></ol>
+<hr>
+<p># LESSON CONTENT</p>
+<h2>4.1 Developing Your AI Strategy (15 minutes)</h2>
+<h3>The AI Strategy Framework</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    AI STRATEGY FRAMEWORK                             │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                  1. ASSESS                               │     │
+│   │         Where are we now?                                │     │
+│   │    • Current capabilities                               │     │
+│   │    • Technology infrastructure                          │     │
+│   │    • Team skills and knowledge                          │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                              │                                       │
+│                              ▼                                       │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                  2. ALIGN                                │     │
+│   │         Where do we want to go?                         │     │
+│   │    • Business goals                                     │     │
+│   │    • Competitive landscape                              │     │
+│   │    • Customer needs                                     │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                              │                                       │
+│                              ▼                                       │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                  3. PLAN                                 │     │
+│   │         How do we get there?                            │     │
+│   │    • Use case prioritisation                            │     │
+│   │    • Resource allocation                                │     │
+│   │    • Timeline and milestones                            │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                              │                                       │
+│                              ▼                                       │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                  4. EXECUTE                             │     │
+│   │         Make it happen                                 │     │
+│   │    • Pilot projects                                    │     │
+│   │    • Build vs buy decisions                            │     │
+│   │    • Change management                                  │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                              │                                       │
+│                              ▼                                       │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                  5. MEASURE                             │     │
+│   │         How did we do?                                 │     │
+│   │    • KPIs and metrics                                  │     │
+│   │    • ROI calculation                                   │     │
+│   │    • Continuous improvement                            │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<h3>Identifying High-Impact Use Cases</h3>
+<div class="tablewrap"><table><thead><tr><th>Industry</th><th>High-Impact Use Cases</th></tr></thead><tbody><tr><td><strong>Sales</strong></td><td>Lead qualification, follow-ups, CRM updates</td></tr><tr><td><strong>Customer Service</strong></td><td>24/7 support, ticket routing, FAQ handling</td></tr><tr><td><strong>Operations</strong></td><td>Scheduling, inventory, reporting</td></tr><tr><td><strong>Marketing</strong></td><td>Content creation, social media, analytics</td></tr><tr><td><strong>HR</strong></td><td>Recruitment screening, onboarding, FAQs</td></tr><tr><td><strong>Finance</strong></td><td>Invoice processing, reconciliation, reporting</td></tr></tbody></table></div>
+<h3>Use Case Prioritisation Matrix</h3>
+<pre><code>                    IMPACT
+                    High          Low
+              ┌──────────────┬──────────────┐
+         High │   QUICK      │    LOW       │
+              │   WINS       │    HANG      │
+   EFFORT     ├──────────────┼──────────────┤
+         Low  │   STRATEGIC  │   BACKLOG    │
+              │   PILOTS     │              │
+              └──────────────┴──────────────┘</code></pre>
+<hr>
+<h2>4.2 Ethical AI &amp; Responsible Practices (15 minutes)</h2>
+<h3>The AI Ethics Framework</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    AI ETHICS PRINCIPLES                              │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
+│   │  TRANSPARENCY│  │   FAIRNESS  │  │  PRIVACY    │              │
+│   │             │  │             │  │             │              │
+│   │  Explain   │  │  Avoid      │  │  Protect    │              │
+│   │  decisions │  │  bias       │  │  user data  │              │
+│   └─────────────┘  └─────────────┘  └─────────────┘              │
+│                                                                     │
+│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
+│   │ ACCOUNTABILITY│ │  SAFETY     │  │  HUMAN     │              │
+│   │             │  │             │  │  OVERSIGHT  │              │
+│   │  Who&#x27;s     │  │  Prevent   │  │            │              │
+│   │  responsible?│  │  harm      │  │  Keep humans│              │
+│   └─────────────┘  └─────────────┘  │  in the    │              │
+│                                     │  loop      │              │
+│                                     └─────────────┘              │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<h3>Common Ethical Concerns</h3>
+<div class="tablewrap"><table><thead><tr><th>Concern</th><th>Description</th><th>Mitigation</th></tr></thead><tbody><tr><td><strong>Bias</strong></td><td>AI reproduces societal biases</td><td>Diverse training data, regular audits</td></tr><tr><td><strong>Privacy</strong></td><td>User data exposure</td><td>Data minimisation, encryption</td></tr><tr><td><strong>Transparency</strong></td><td>"Black box" decisions</td><td>Explainable AI, documentation</td></tr><tr><td><strong>Job Displacement</strong></td><td>Worker replacement</td><td>Reskilling, human-AI collaboration</td></tr><tr><td><strong>Misinformation</strong></td><td>AI-generated false content</td><td>Watermarking, verification</td></tr><tr><td><strong>Security</strong></td><td>Prompt injection, attacks</td><td>Guardrails, input validation</td></tr></tbody></table></div>
+<h3>The Human-in-the-Loop Model</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    HUMAN-IN-THE-LOOP                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   OPTION 1: Human reviews before action                            │
+│   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐     │
+│   │  Task   │────►│  Agent  │────►│  Human  │────►│ Action  │     │
+│   │ Request │     │  Plan   │     │  Review │     │ Execute │     │
+│   └─────────┘     └─────────┘     └─────────┘     └─────────┘     │
+│                                                                     │
+│   OPTION 2: Human monitors and intervenes                          │
+│   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐     │
+│   │  Task   │────►│  Agent  │────►│ Action  │────►│  Human  │     │
+│   │ Request │     │  Executes│    │  Takes  │     │ Can     │     │
+│   └─────────┘     └─────────┘     └─────────┘     │ Override │     │
+│                                                     └─────────┘     │
+│                                                                     │
+│   OPTION 3: Human reviews after action                             │
+│   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐     │
+│   │  Task   │────►│  Agent  │────►│ Action  │────►│  Human  │     │
+│   │ Request │     │  Executes│    │  Takes  │     │ Reviews │     │
+│   └─────────┘     └─────────┘     └─────────┘     └─────────┘     │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h2>4.3 Measuring ROI &amp; Success (10 minutes)</h2>
+<h3>Key Metrics Framework</h3>
+<div class="tablewrap"><table><thead><tr><th>Category</th><th>Metrics</th><th>Example</th></tr></thead><tbody><tr><td><strong>Efficiency</strong></td><td>Time saved, Tasks automated</td><td>10 hours/week saved</td></tr><tr><td><strong>Quality</strong></td><td>Error reduction, Satisfaction</td><td>50% fewer errors</td></tr><tr><td><strong>Scale</strong></td><td>Volume handled, Availability</td><td>24/7 coverage</td></tr><tr><td><strong>Cost</strong></td><td>Cost per interaction, ROI</td><td>70% cost reduction</td></tr><tr><td><strong>Adoption</strong></td><td>Usage rate, Feature adoption</td><td>80% team adoption</td></tr></tbody></table></div>
+<h3>ROI Calculation</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    ROI CALCULATION                                  │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ROI = (Benefits - Costs) / Costs × 100%                          │
+│                                                                     │
+│   BENEFITS:                                                         │
+│   ├── Labour time saved            $X/year                          │
+│   ├── Error reduction             $X/year                          │
+│   ├── Revenue increase            $X/year                          │
+│   └── Customer satisfaction       $X/year                          │
+│                                                                     │
+│   COSTS:                                                            │
+│   ├── AI/LLM API costs            $X/year                          │
+│   ├── Development/integration     $X                               │
+│   ├── Training and change mgmt    $X                               │
+│   └── Maintenance                 $X/year                          │
+│                                                                     │
+│   EXAMPLE:                                                          │
+│   • 20 hours/week saved × 52 weeks × $50/hr = $52,000/year       │
+│   • AI costs: $5,000/year                                     │
+│   • Development: $3,000 one-time                                  │
+│   • ROI = ($52,000 - $8,000) / $8,000 × 100% = 550%             │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<h3>Building Your Business Case</h3>
+<ol><li><strong>Start Small:</strong> Pilot with low-risk, high-visibility use case</li><li><strong>Document Everything:</strong> Track time, errors, costs before and after</li><li><strong>Tell Stories:</strong> Collect user testimonials and success stories</li><li><strong>Compare to Status Quo:</strong> Show what happens without AI</li><li><strong>Plan for Scale:</strong> Show path to broader implementation</li></ol>
+<hr>
+<h2>4.4 Building Your AI Roadmap (5 minutes)</h2>
+<h3>The 90-Day Roadmap</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    90-DAY AI ROADMAP                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   PHASE 1: FOUNDATION (Days 1-30)                                   │
+│   ┌─────────────────────────────────────────────────────────────┐   │
+│   │ • Identify 1-2 quick win use cases                         │   │
+│   │ • Set up Hermes or chosen platform                        │   │
+│   │ • Train 1-2 internal champions                             │   │
+│   │ • Establish governance basics                               │   │
+│   └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+│   PHASE 2: PILOT (Days 31-60)                                       │
+│   ┌─────────────────────────────────────────────────────────────┐   │
+│   │ • Deploy first agent                                       │   │
+│   │ • Measure performance and gather feedback                  │   │
+│   │ • Refine prompts and tools                                 │   │
+│   │ • Document lessons learned                                  │   │
+│   └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+│   PHASE 3: SCALE (Days 61-90)                                       │
+│   ┌─────────────────────────────────────────────────────────────┐   │
+│   │ • Expand to additional use cases                            │   │
+│   │ • Train broader team                                       │   │
+│   │ • Build internal capability                                │   │
+│   │ • Plan next quarter&#x27;s priorities                          │   │
+│   └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<p># EXERCISES</p>
+<h2>Exercise 1: Use Case Prioritisation (5 minutes)</h2>
+<p>For each use case, place it on the prioritisation matrix:</p>
+<ol><li>AI customer service chatbot</li><li>Automated meeting transcription</li><li>AI-generated social media posts</li><li>Personal calendar assistant</li><li>Automated invoice processing</li></ol>
+<hr>
+<h2>Exercise 2: Ethical Scenario (5 minutes)</h2>
+<p><strong>Scenario:</strong> Your AI agent has recommended firing an employee based on performance data. What ethical concerns does this raise? What safeguards should be in place? <strong>Consider:</strong></p>
+<ul><li>Bias in the data</li><li>Human oversight</li><li>Transparency</li><li>Appeal process</li></ul>
+<hr>
+<h2>Exercise 3: ROI Calculation (5 minutes)</h2>
+<p>Calculate the ROI for this scenario:</p>
+<ul><li>Agent handles 100 customer inquiries/day</li><li>Saves 5 minutes per inquiry</li><li>Agent costs $200/month</li><li>Human agent costs $30/hour</li></ul>
+<p><strong>Calculate:</strong></p>
+<ul><li>Hours saved per month: _______________</li><li>Value of time saved: _______________</li><li>Monthly ROI: _______________</li></ul>
+<hr>
+<p># DISCUSSION QUESTIONS</p>
+<ol><li><strong>Strategy:</strong> What are the biggest barriers to AI adoption in traditional businesses, and how would you overcome them?</li><li><strong>Ethics:</strong> How do you balance efficiency gains against the risk of over-reliance on AI systems?</li><li><strong>Practical:</strong> What's the minimum viable AI implementation you would recommend for a small business?</li><li><strong>Future:</strong> How might AI agent capabilities evolve in the next 2-3 years, and what should businesses do to prepare?</li></ol>
+<hr>
+<p># QUIZ</p>
+<h2>Quiz: Module 4 - Strategy &amp; Practical Application</h2>
+<h3>Question 1 (1 point)</h3>
+<p>What is the first step in the AI Strategy Framework? A) Plan B) Execute C) Assess D) Measure <strong>Correct Answer:</strong> C</p>
+<hr>
+<h3>Question 2 (1 point)</h3>
+<p>Which ethical principle involves being able to explain how AI made a decision? A) Fairness B) Transparency C) Privacy D) Safety <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 3 (1 point)</h3>
+<p>What does "Human-in-the-Loop" (HITL) refer to? A) AI training methodology B) Keeping humans involved in AI decision-making C) Loop unrolling optimisation D) User interface design <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 4 (1 point)</h3>
+<p>Which use case would be a "Quick Win" on the prioritisation matrix? A) High impact, High effort B) High impact, Low effort C) Low impact, High effort D) Low impact, Low effort <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 5 (1 point)</h3>
+<p>What is a key benefit of starting with a pilot project? A) It requires less documentation B) It reduces risk while proving value C) It eliminates the need for training D) It automatically scales <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 6 (1 point)</h3>
+<p>Which metric category measures things like error reduction and customer satisfaction? A) Efficiency B) Quality C) Scale D) Adoption <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 7 (2 points)</h3>
+<p>Name three common ethical concerns with AI systems:</p>
+<ol><li>_______________</li><li>_______________</li><li>_______________</li></ol>
+<p><strong>Sample Answers:</strong></p>
+<ol><li>Bias in decision-making</li><li>Privacy violations</li><li>Lack of transparency</li></ol>
+<hr>
+<h3>Question 8 (2 points)</h3>
+<p>Why is it important to have human oversight of AI agents? <strong>Sample Answer:</strong> Humans provide accountability, can catch errors or biases, make ethical judgments, and ensure the AI serves human interests rather than causing unintended harm.</p>
+<hr>
+<h2>Quiz Answer Key</h2>
+<div class="tablewrap"><table><thead><tr><th>Q</th><th>Answer</th></tr></thead><tbody><tr><td>1</td><td>C</td></tr><tr><td>2</td><td>B</td></tr><tr><td>3</td><td>B</td></tr><tr><td>4</td><td>B</td></tr><tr><td>5</td><td>B</td></tr><tr><td>6</td><td>B</td></tr><tr><td>7</td><td>(Open)</td></tr><tr><td>8</td><td>(Open)</td></tr></tbody></table></div>
+<hr>
+<p># SUMMARY</p>
+<h2>Key Takeaways</h2>
+<p>✅ <strong>AI Strategy Framework:</strong> Assess → Align → Plan → Execute → Measure ✅ <strong>Use Case Prioritisation:</strong> Focus on high impact, low effort first ✅ <strong>Ethics Principles:</strong> Transparency, Fairness, Privacy, Accountability, Safety, Human Oversight ✅ <strong>Human-in-the-Loop:</strong> Review before, monitor during, or review after action ✅ <strong>ROI Metrics:</strong> Efficiency, Quality, Scale, Cost, Adoption ✅ <strong>90-Day Roadmap:</strong> Foundation → Pilot → Scale</p>
+<hr>
+<p># NEXT STEPS After completing this module:</p>
+<ol><li>✅ You can develop an AI strategy</li><li>✅ You understand ethical considerations</li><li>✅ You know how to measure success</li><li>⏭️ Move to <strong>Module 5: Assessment &amp; Practice</strong></li><li>🔄 Apply these principles to your own AI project</li></ol>
+<hr>
+<p><em>Module 4 complete. Time to put it all together!</em></p>
+<nav class="lesson-nav"><a href="index.html">&larr; Course map</a><a href="index.html" style="text-align:right">All lessons &rarr;</a></nav>
+<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+</main></body></html>

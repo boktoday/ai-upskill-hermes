@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4 - The words that get work done</title>
+<style>/* AI Upskill — course pages
+   One stylesheet for every lesson, module and the course map.
+   Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
+
+:root {
+  --pink: #E67E9F;
+  --pink-deep: #B4526F;
+  --pink-wash: #FCEFF3;
+  --ink: #131313;
+  --ink-soft: #3A3835;
+  --steel: #738DA0;
+  --steel-wash: #EEF2F5;
+  --paper: #FBF7F2;
+  --card: #FFFFFF;
+  --line: #E3DCD2;
+  --ok: #3F7D5B;
+  --warn: #B26B1F;
+  --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 26px 24px 22px;
+  border-bottom: 5px solid var(--pink);
+}
+
+.masthead .inner { max-width: var(--measure); margin: 0 auto; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.deck { margin: 0; color: #D6D1CA; font-size: 15px; max-width: 34rem; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meta span {
+  background: #262524;
+  border: 1px solid #35322F;
+  color: #EDE9E3;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  padding: 5px 10px;
+}
+
+.meta span b { color: var(--pink); font-weight: 600; }
+.meta span.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+
+/* ---------- body ---------- */
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px 80px; }
+
+.lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 26px 0 4px;
+  padding-left: 16px;
+  border-left: 5px solid var(--pink);
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 44px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2.act { border-bottom-color: var(--pink); }
+h2.act::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--pink);
+  margin-top: -2px;
+}
+
+h3 { font-size: 18px; margin: 28px 0 6px; }
+h4 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin: 22px 0 4px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--pink-deep); text-underline-offset: 2px; }
+
+ul, ol { margin: 6px 0 18px; padding-left: 22px; }
+li { margin: 7px 0; }
+li::marker { color: var(--steel); }
+
+strong { font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #F1EBE3;
+  padding: 2px 6px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--ink);
+  color: #F4EFE7;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  border-left: 4px solid var(--pink);
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; white-space: pre; }
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: var(--pink-wash);
+  border-left: 4px solid var(--pink);
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+/* ---------- tables ---------- */
+
+/* tables scroll sideways on phones rather than crushing the text */
+.tablewrap { overflow-x: auto; margin: 0 0 22px; -webkit-overflow-scrolling: touch; }
+.tablewrap table { margin: 0; min-width: 30rem; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 22px; font-size: 15px; }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #F3EDE5; font-weight: 650; }
+
+/* ---------- components ---------- */
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--steel);
+  background: var(--card);
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.callout.ok { border-left-color: var(--ok); background: #F3F8F4; }
+.callout.warn { border-left-color: var(--warn); background: #FBF4EA; }
+.callout.pink { border-left-color: var(--pink); background: var(--pink-wash); }
+.callout h4 { margin: 0 0 6px; color: inherit; font-size: 13px; letter-spacing: .1em; }
+
+.checklist { list-style: none; padding: 0; margin: 0 0 22px; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.checklist li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px; height: 15px;
+  margin-top: 4px;
+  border: 2px solid var(--ink);
+  background: transparent;
+}
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 22px; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 18px 44px;
+  margin: 0;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 650;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.grid2 > div { background: var(--card); border: 1px solid var(--line); padding: 16px; }
+.grid2 h4 { margin-top: 0; }
+
+/* ---------- footer + nav ---------- */
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 3px solid var(--ink);
+  font-size: 14px;
+}
+.lesson-nav a { display: block; max-width: 48%; }
+
+.foot {
+  margin-top: 26px;
+  color: #6B6660;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- course map ---------- */
+
+.map { list-style: none; padding: 0; margin: 24px 0 0; }
+.map > li { border: 1px solid var(--line); background: var(--card); margin: 0 0 14px; }
+.map .module-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: #F7F2EB;
+}
+.map .module-head h3 { margin: 0; font-size: 17px; }
+.map .module-head span { font-size: 12.5px; color: var(--steel); letter-spacing: .06em; text-transform: uppercase; }
+.map ol { margin: 0; padding: 12px 16px 14px 40px; }
+.map ol li { margin: 5px 0; }
+.map .artefact { color: var(--steel); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+.tile { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--pink); padding: 16px; }
+.tile .big { font-size: clamp(24px, 6vw, 32px); font-weight: 700; letter-spacing: -0.02em; display: block; }
+.tile .label { font-size: 13px; color: var(--steel); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { background: #fff; color: #000; border-bottom: 2pt solid #000; padding: 0 0 10pt; }
+  .masthead h1 { color: #000; }
+  .deck, .meta span { color: #000; }
+  .meta span { border-color: #000; }
+  .lesson-nav, .foot { display: none; }
+  h2 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 12px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .masthead { padding: 20px 18px 18px; }
+  .wrap { padding: 0 18px 64px; }
+}
+</style></head>
+<body>
+<header class="masthead"><div class="inner">
+  <p class="eyebrow">AI Upskill · Lesson 4</p>
+  <h1>Lesson 4 - The words that get work done</h1>
+  
+  <div class="meta"><span>Module <b>Position</b></span><span>About <b>45 min</b></span><span>Artefact <b>language/my-glossary.md</b></span><span>Lesson <b>4 of 15</b></span></div>
+</div></header>
+<main class="wrap">
+<p class="lede"><p>Your own short glossary: twenty terms that matter in your work, each with a sentence you would actually say to an agent, plus the five phrases you catch yourself using that cause trouble.</p></p>
+<h2>Why it matters</h2>
+<p>Prompting as a separate craft is fading: the agent now holds procedures and tools, so what is left for you is the language that tells it which procedure and what done looks like. Vague words cost rounds. Naming the thing is the cheapest speed-up there is.</p>
+<h2>The demo</h2>
+<p>The coach takes the request "make my report better" and rewrites it in front of the student: who reads it, how long, what must be in it, what must not, and the test that decides it is finished. It runs both versions and reads the difference. Then it shows the three habits: name the thing, say the outcome rather than the vibe, and give the test. Finally it opens <code>references/glossary.md</code> and picks five entries that matter for this student's job.</p>
+<h2 class="act">Your turn</h2>
+<ol class="steps"><li>Read <code>references/glossary.md</code>. It is the full vocabulary, 400 plus entries, each ending in a <strong>Say:</strong> line.</li><li>Write <code>language/my-glossary.md</code> with twenty terms you will actually use, and for each one write your own Say line about your own work. Copying the glossary's line is not the exercise.</li><li>Add a section called <strong>Words that cost me</strong> with five phrases you use when you are vague, and the repair for each.</li><li>Read your page aloud. Any sentence you would be embarrassed to say to a competent colleague gets rewritten.</li></ol>
+<h2 class="act">The check</h2>
+<ol><li>Twenty terms, each with a Say line that names something concrete from the student's own job.</li><li>Five trouble phrases with a repair each.</li><li>No entry is a copy of the glossary line.</li><li>At least three terms come from the agent section: skill, tool call, verification, guardrail, context, autonomy.</li></ol>
+<p>Failure signs: a list of definitions with no Say lines, or twenty web terms for someone whose work is not on the web.</p>
+<h2 class="act">Sealed when</h2>
+<p><code>language/my-glossary.md</code> passes the four checks and the student has used one Say line for real, with the agent's answer pasted underneath.</p>
+<nav class="lesson-nav"><a href="lesson-03.html">&larr; Lesson 3</a><a href="lesson-05.html" style="text-align:right">Lesson 5 &rarr;</a></nav>
+<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+</main></body></html>

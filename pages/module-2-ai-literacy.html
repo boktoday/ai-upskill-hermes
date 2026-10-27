@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&gt; REWRITE NEEDED: this module still describes the OpenClaw architecture (openclaw naming x2). The prose around it is still useful, but do not teach the mechanics as written; convert them to Hermes (one profile, skills, cron jobs) first.</title>
+<style>/* AI Upskill — course pages
+   One stylesheet for every lesson, module and the course map.
+   Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
+
+:root {
+  --pink: #E67E9F;
+  --pink-deep: #B4526F;
+  --pink-wash: #FCEFF3;
+  --ink: #131313;
+  --ink-soft: #3A3835;
+  --steel: #738DA0;
+  --steel-wash: #EEF2F5;
+  --paper: #FBF7F2;
+  --card: #FFFFFF;
+  --line: #E3DCD2;
+  --ok: #3F7D5B;
+  --warn: #B26B1F;
+  --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 26px 24px 22px;
+  border-bottom: 5px solid var(--pink);
+}
+
+.masthead .inner { max-width: var(--measure); margin: 0 auto; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.deck { margin: 0; color: #D6D1CA; font-size: 15px; max-width: 34rem; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meta span {
+  background: #262524;
+  border: 1px solid #35322F;
+  color: #EDE9E3;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  padding: 5px 10px;
+}
+
+.meta span b { color: var(--pink); font-weight: 600; }
+.meta span.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+
+/* ---------- body ---------- */
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px 80px; }
+
+.lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 26px 0 4px;
+  padding-left: 16px;
+  border-left: 5px solid var(--pink);
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 44px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2.act { border-bottom-color: var(--pink); }
+h2.act::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--pink);
+  margin-top: -2px;
+}
+
+h3 { font-size: 18px; margin: 28px 0 6px; }
+h4 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin: 22px 0 4px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--pink-deep); text-underline-offset: 2px; }
+
+ul, ol { margin: 6px 0 18px; padding-left: 22px; }
+li { margin: 7px 0; }
+li::marker { color: var(--steel); }
+
+strong { font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #F1EBE3;
+  padding: 2px 6px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--ink);
+  color: #F4EFE7;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  border-left: 4px solid var(--pink);
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; white-space: pre; }
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: var(--pink-wash);
+  border-left: 4px solid var(--pink);
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+/* ---------- tables ---------- */
+
+/* tables scroll sideways on phones rather than crushing the text */
+.tablewrap { overflow-x: auto; margin: 0 0 22px; -webkit-overflow-scrolling: touch; }
+.tablewrap table { margin: 0; min-width: 30rem; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 22px; font-size: 15px; }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #F3EDE5; font-weight: 650; }
+
+/* ---------- components ---------- */
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--steel);
+  background: var(--card);
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.callout.ok { border-left-color: var(--ok); background: #F3F8F4; }
+.callout.warn { border-left-color: var(--warn); background: #FBF4EA; }
+.callout.pink { border-left-color: var(--pink); background: var(--pink-wash); }
+.callout h4 { margin: 0 0 6px; color: inherit; font-size: 13px; letter-spacing: .1em; }
+
+.checklist { list-style: none; padding: 0; margin: 0 0 22px; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.checklist li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px; height: 15px;
+  margin-top: 4px;
+  border: 2px solid var(--ink);
+  background: transparent;
+}
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 22px; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 18px 44px;
+  margin: 0;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 650;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.grid2 > div { background: var(--card); border: 1px solid var(--line); padding: 16px; }
+.grid2 h4 { margin-top: 0; }
+
+/* ---------- footer + nav ---------- */
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 3px solid var(--ink);
+  font-size: 14px;
+}
+.lesson-nav a { display: block; max-width: 48%; }
+
+.foot {
+  margin-top: 26px;
+  color: #6B6660;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- course map ---------- */
+
+.map { list-style: none; padding: 0; margin: 24px 0 0; }
+.map > li { border: 1px solid var(--line); background: var(--card); margin: 0 0 14px; }
+.map .module-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: #F7F2EB;
+}
+.map .module-head h3 { margin: 0; font-size: 17px; }
+.map .module-head span { font-size: 12.5px; color: var(--steel); letter-spacing: .06em; text-transform: uppercase; }
+.map ol { margin: 0; padding: 12px 16px 14px 40px; }
+.map ol li { margin: 5px 0; }
+.map .artefact { color: var(--steel); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+.tile { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--pink); padding: 16px; }
+.tile .big { font-size: clamp(24px, 6vw, 32px); font-weight: 700; letter-spacing: -0.02em; display: block; }
+.tile .label { font-size: 13px; color: var(--steel); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { background: #fff; color: #000; border-bottom: 2pt solid #000; padding: 0 0 10pt; }
+  .masthead h1 { color: #000; }
+  .deck, .meta span { color: #000; }
+  .meta span { border-color: #000; }
+  .lesson-nav, .foot { display: none; }
+  h2 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 12px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .masthead { padding: 20px 18px 18px; }
+  .wrap { padding: 0 18px 64px; }
+}
+</style></head>
+<body>
+<header class="masthead"><div class="inner">
+  <p class="eyebrow">AI Upskill · Module 2</p>
+  <h1>&gt; REWRITE NEEDED: this module still describes the OpenClaw architecture (openclaw naming x2). The prose around it is still useful, but do not teach the mechanics as written; convert them to Hermes (one profile, skills, cron jobs) first.</h1>
+  <p class="deck">How models work, prompting, and the limits of context</p>
+  <div class="meta"><span>Module <b>2 of 5</b></span><span>About <b>45 min</b></span></div>
+</div></header>
+<main class="wrap">
+<h2>Role</h2>
+<p>Teach foundational AI concepts: how LLMs work, prompt engineering, context management, and tool selection</p>
+<h2>Agent ID</h2>
+<p><code>module-2-ai-literacy</code></p>
+<h2>Duration</h2>
+<p>45 minutes</p>
+<h2>Learning Objectives</h2>
+<p>By the end of this module, students will be able to:</p>
+<ol><li>Explain how LLMs generate text through token prediction</li><li>Apply basic prompt engineering techniques to improve AI responses</li><li>Understand context windows and manage memory effectively</li><li>Select appropriate tools for different AI tasks</li></ol>
+<hr>
+<p># LESSON CONTENT</p>
+<h2>2.1 Understanding LLMs (12 minutes)</h2>
+<h3>What Is an LLM?</h3>
+<p>A <strong>Large Language Model (LLM)</strong> is a type of AI trained on massive amounts of text data. It learns patterns in language and uses those patterns to predict what comes next. Think of it like autocomplete on steroids — but instead of completing a word, it can complete paragraphs, code, or entire conversations. <strong>Key Players:</strong></p>
+<ul><li><strong>OpenAI:</strong> GPT-4, GPT-4o</li><li><strong>Anthropic:</strong> Claude 3.5, Claude 3</li><li><strong>Google:</strong> Gemini 1.5</li><li><strong>Meta:</strong> Llama 3</li><li><strong>MiniMax:</strong> M2.1, M2.5</li></ul>
+<hr>
+<h3>How LLMs Actually Work</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    HOW AN LLM GENERATES TEXT                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   INPUT: &quot;The capital of France is&quot;                                │
+│              │                                                     │
+│              ▼                                                     │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                    TOKENIZATION                           │     │
+│   │  &quot;The&quot; → [1, 2]    &quot;capital&quot; → [3, 4, 5, 6, 7]          │     │
+│   │  &quot;of&quot; → [8]        &quot;France&quot; → [9, 10, 11]              │     │
+│   │  &quot;is&quot; → [12]                                           │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                          │                                          │
+│                          ▼                                          │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                 NEURAL NETWORK                           │     │
+│   │                                                          │     │
+│   │   [1,2] ──┐                                              │     │
+│   │   [3,4,5]─┼──►  Predict next token probabilities       │     │
+│   │   [6,7]  ─┘                                              │     │
+│   │   ...    ──┬                                              │     │
+│   │            │                                              │     │
+│   │   Output: &quot;Paris&quot; (87%)  &quot;Lyon&quot; (5%)  &quot;Nice&quot; (2%) ...   │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                          │                                          │
+│                          ▼                                          │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │                  SAMPLING                                 │     │
+│   │                                                          │     │
+│   │   Select next token based on:                           │     │
+│   │   • Temperature (creativity vs precision)              │     │
+│   │   • Top-p (nucleus sampling)                            │     │
+│   │   • Top-k (top k candidates)                            │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                          │                                          │
+│                          ▼                                          │
+│   OUTPUT: &quot;The capital of France is Paris.&quot;                        │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Tokens: The Building Blocks</h3>
+<p>LLMs don't understand words — they understand <strong>tokens</strong>. A token is typically:</p>
+<ul><li>~4 characters of English text</li><li>1 word on average</li><li>A portion of code or other languages</li></ul>
+<p><strong>Why this matters:</strong></p>
+<ul><li><strong>Context limits</strong> are measured in tokens, not words</li><li>Longer prompts = fewer tokens for the response</li><li>Some languages use more tokens than others</li></ul>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                        TOKEN EXAMPLES                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   &quot;Hello&quot;     →  1 token                                         │
+│   &quot;world&quot;     →  1 token                                         │
+│   &quot;Hello world&quot; →  2 tokens                                      │
+│   &quot;AI&quot;        →  1 token                                         │
+│   &quot;🤖&quot;        →  1-2 tokens (emoji is complex!)                 │
+│   &quot;12345&quot;     →  1 token                                         │
+│   &quot;$50.00&quot;    →  1 token                                         │
+│                                                                 │
+│   📝 Rule of thumb: 1 token ≈ ¾ of a word                       │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Temperature: Creativity vs Precision</h3>
+<p>The <strong>temperature</strong> setting controls how "random" the model's output is.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                      TEMPERATURE SETTINGS                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   Temperature = 0                                                 │
+│   ┌─────────────────────────────────────────────────────────────┐ │
+│   │ &quot;What is 2+2?&quot; → &quot;4&quot;     (Deterministic, always same)       │ │
+│   └─────────────────────────────────────────────────────────────┘ │
+│                                                                     │
+│   Temperature = 0.7 (Recommended for most tasks)                  │
+│   ┌─────────────────────────────────────────────────────────────┐ │
+│   │ &quot;Write a poem about cats&quot; → Varies each time, creative      │ │
+│   └─────────────────────────────────────────────────────────────┘ │
+│                                                                     │
+│   Temperature = 1.0+                                              │
+│   ┌─────────────────────────────────────────────────────────────┐ │
+│   │ &quot;What is 2+2?&quot; → Could say &quot;5&quot;, &quot;window&quot;, &quot;purple&quot;          │ │
+│   │                  (High randomness, may not make sense)      │ │
+│   └─────────────────────────────────────────────────────────────┘ │
+│                                                                     │
+│   📝 Best Practice:                                               │
+│   • Math/Coding: temperature = 0                                  │
+│   • Writing/Creative: temperature = 0.7-0.9                       │
+│   • General use: temperature = 0.7                                │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h2>2.2 Prompt Engineering Basics (12 minutes)</h2>
+<h3>What Is Prompt Engineering?</h3>
+<p><strong>Prompt engineering</strong> is the art and science of crafting inputs that get the best outputs from AI models. It's like learning to ask better questions — the quality of your prompt directly affects the quality of the response.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                   PROMPT ENGINEERING SPECTRUM                       │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   BAD PROMPT                      GOOD PROMPT                      │
+│   ┌─────────────┐                ┌─────────────────────────────┐   │
+│   │ &quot;Write about │                │ &quot;Write a 300-word blog post │   │
+│   │  AI&quot;        │                │  about how AI improves      │   │
+│   │             │                │  productivity. Include:     │   │
+│   │             │                │  • 3 specific examples      │   │
+│   │             │                │  • 1 caution about overuse  │   │
+│   │             │                │  Tone: professional but      │   │
+│   │             │                │  accessible. Format: intro, │   │
+│   │             │                │  body, conclusion.&quot;          │   │
+│   └─────────────┘                └─────────────────────────────┘   │
+│                                                                     │
+│   Result: Vague,                  Result: Focused, useful,        │
+│   generic response                actionable content              │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Core Prompting Techniques</h3>
+<h4>1. Be Specific</h4>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                      BE SPECIFIC                                │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ❌ &quot;Write about Python&quot;                                      │
+│                                                                 │
+│   ✅ &quot;Explain Python list comprehensions to a beginner.        │
+│      Include 3 code examples: one simple, one with filter,    │
+│      one nested. Keep explanations under 50 words each.&quot;      │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<h4>2. Give Role/Context</h4>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                      GIVE ROLE/CONTEXT                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ❌ &quot;How do I fix this bug?&quot;                                  │
+│                                                                 │
+│   ✅ &quot;You are a senior Python developer with 10 years of       │
+│      experience. I&#x27;m a beginner who encountered this error     │
+│      in my first Django project. Explain what&#x27;s wrong and     │
+│      how to fix it in simple terms.&quot;                           │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<h4>3. Structure Your Request</h4>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                   STRUCTURE YOUR REQUEST                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   Use formatting to make your intent clear:                    │
+│                                                                 │
+│   ❌ &quot;Give me a workout plan eat better feel better&quot;          │
+│                                                                 │
+│   ✅ &quot;&quot;&quot;                                                        │
+│      Goal: Feel better and lose 5 lbs                          │
+│      Constraints: Vegetarian, no gym access, 30 min/day        │
+│      Format:                                                    │
+│      - Morning routine                                         │
+│      - Evening routine                                          │
+│      - 3 meal ideas per day                                    │
+│      &quot;&quot;&quot;                                                        │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<h4>4. Few-Shot Examples</h4>
+<p>Show the model what you want by example:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                     FEW-SHOT PROMPTING                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ❌ &quot;Convert these to JSON&quot;                                   │
+│                                                                 │
+│   ✅ &quot;Convert these to JSON:                                    │
+│                                                                 │
+│      Example:                                                   │
+│      Input: Apple, Red, Round                                  │
+│      Output: {\&quot;fruit\&quot;: \&quot;Apple\&quot;, \&quot;color\&quot;: \&quot;Red\&quot;,        │
+│               \&quot;shape\&quot;: \&quot;Round\&quot;}                              │
+│                                                                 │
+│      Now convert:                                               │
+│      Banana, Yellow, Long                                       │
+│   &quot;&quot;&quot;                                                           │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Hermes Prompt Example</h3>
+<p>Here's how you might prompt an Hermes agent:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                 OPENCLAW PROMPT EXAMPLE                             │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   &quot;&quot;&quot;                                                              │
+│   Task: Research latest AI news and summarize in 3 bullet points  │
+│                                                                     │
+│   Role: Tech journalist who writes for business executives        │
+│                                                                     │
+│   Context: I need to prepare for a board meeting in 2 hours        │
+│                                                                     │
+│   Constraints:                                                     │
+│   - Focus on business impact, not technical details               │
+│   - Include any major announcements from big tech companies       │
+│   - Maximum 3 sentences per bullet point                           │
+│                                                                     │
+│   Tools to use:                                                    │
+│   - web_search (search for &quot;AI news March 2026&quot;)                  │
+│   - Read and summarize the top 5 results                          │
+│                                                                     │
+│   Output format:                                                   │
+│   - Date of news                                                   │
+│   - Key development (1-2 sentences)                               │
+│   - Business implication (1 sentence)                            │
+│   &quot;&quot;&quot;                                                              │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Common Prompt Patterns</h3>
+<div class="tablewrap"><table><thead><tr><th>Pattern</th><th>When to Use</th><th>Example</th></tr></thead><tbody><tr><td><strong>Role</strong></td><td>Get domain-specific responses</td><td>"You are a lawyer..."</td></tr><tr><td><strong>Template</strong></td><td>Structured output</td><td>"Write in this format..."</td></tr><tr><td><strong>Chain of Thought</strong></td><td>Complex reasoning</td><td>"Think step by step..."</td></tr><tr><td><strong>Few-Shot</strong></td><td>Show examples</td><td>"Example: X → Y"</td></tr><tr><td><strong>Constraints</strong></td><td>Limit output</td><td>"Don't mention..."</td></tr><tr><td><strong>Style</strong></td><td>Match tone</td><td>"Write like a pirate..."</td></tr></tbody></table></div>
+<hr>
+<h2>2.3 Context Windows and Memory (10 minutes)</h2>
+<h3>What Is a Context Window?</h3>
+<p>A <strong>context window</strong> is the maximum amount of text (measured in tokens) an LLM can consider at once. It's like the model's "attention span."</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                      CONTEXT WINDOW VISUALIZATION                  │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   Model: Claude 3.5           Context Window: 200K tokens          │
+│   ┌─────────────────────────────────────────────────────────────┐ │
+│   │  ┌─────────────────────────────────────────────────────────┐ │ │
+│   │  │                    CONTEXT WINDOW                       │ │ │
+│   │  │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐      │ │ │
+│   │  │  │Token│ │Token│ │Token│ │Token│ │Token│ │ ... │      │ │ │
+│   │  │  │  1  │ │  2  │ │  3  │ │  4  │ │  5  │ │     │      │ │ │
+│   │  │  └──┬──┘ └──┬──┘ └──┬──┘ └──┬──┘ └──┬──┘ └──┬──┘      │ │ │
+│   │  │     │       │       │       │       │       │          │ │ │
+│   │  │     ▼       ▼       ▼       ▼       ▼       ▼          │ │ │
+│   │  │  ┌───────────────────────────────────────────────┐    │ │ │
+│   │  │  │            ATTENTION MECHANISM                 │    │ │ │
+│   │  │  │  (Model &quot;attends&quot; to all tokens at once)       │    │ │ │
+│   │  │  └───────────────────────────────────────────────┘    │ │ │
+│   │  │                      │                                 │ │ │
+│   │  │                      ▼                                 │ │ │
+│   │  │              ┌──────────────┐                         │ │ │
+│   │  │              │ Output Token │                         │ │ │
+│   │  │              │  Prediction  │                         │ │ │
+│   │  │              └──────────────┘                         │ │ │
+│   │  └─────────────────────────────────────────────────────────┘ │ │
+│   └─────────────────────────────────────────────────────────────┘ │
+│                                                                     │
+│   📝 If your prompt is 100K tokens, you have 100K for context    │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Current Context Limits by Model</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                   CONTEXT WINDOWS BY MODEL                          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   Model                Context Window    ~Words                    │
+│   ─────────────────────────────────────────────────────────────     │
+│   GPT-4o               128K tokens        ~96,000 words              │
+│   Claude 3.5 Sonnet    200K tokens       ~150,000 words             │
+│   Gemini 1.5 Pro      2M tokens          ~1.5M words               │
+│   Llama 3 70B         8K tokens          ~6,000 words              │
+│   MiniMax M2.5        1M+ tokens         ~750,000 words            │
+│                                                                     │
+│   📝 Note: Larger contexts are slower and more expensive           │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Memory Types in AI Systems</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    TYPES OF AI MEMORY                               │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ┌───────────────────────────────────────────────────────────┐    │
+│   │  1. CONTEXT WINDOW (Working Memory)                       │    │
+│   │  ─────────────────────────────────────────────             │    │
+│   │  • What&#x27;s currently in the conversation                  │    │
+│   │  • Disappears when session ends                           │    │
+│   │  • Example: &quot;We were discussing the marketing plan...&quot;     │    │
+│   └───────────────────────────────────────────────────────────┘    │
+│                    │                                                │
+│                    ▼                                                │
+│   ┌───────────────────────────────────────────────────────────┐    │
+│   │  2. SYSTEM PROMPT (Instructions)                          │    │
+│   │  ─────────────────────────────────────────────             │    │
+│   │  • Fixed instructions you provide at start               │    │
+│   │  • Examples: &quot;You are a helpful assistant...&quot;,            │    │
+│   │              &quot;Always respond in Spanish...&quot;               │    │
+│   └───────────────────────────────────────────────────────────┘    │
+│                    │                                                │
+│                    ▼                                                │
+│   ┌───────────────────────────────────────────────────────────┐    │
+│   │  3. EXTERNAL MEMORY (Files, Database)                     │    │
+│   │  ─────────────────────────────────────────────             │    │
+│   │  • Persistent storage beyond sessions                     │    │
+│   │  • Example: Read your notes, reference documents         │    │
+│   │  • Hermes can read/write files, access knowledge bases  │    │
+│   └───────────────────────────────────────────────────────────┘    │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Managing Context Effectively</h3>
+<p><strong>The "Summary" Technique:</strong></p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    CONTEXT MANAGEMENT                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   LONG CONVERSATION PROBLEM:                                   │
+│   ┌─────────────────────────────────────────────────────┐     │
+│   │ Message 1: &quot;Help me write code&quot;                     │     │
+│   │ Message 2: &quot;Make it more efficient&quot;                 │     │
+│   │ Message 3: &quot;Actually, use Python not JS&quot;           │     │
+│   │ ...                                                  │     │
+│   │ Message 50: &quot;Wait, what are we building again?&quot;    │     │
+│   └─────────────────────────────────────────────────────┘     │
+│                                                                 │
+│   SOLUTION: Periodically summarize                              │
+│   ┌─────────────────────────────────────────────────────┐     │
+│   │ &quot;So far we&#x27;ve created a Python script that:         │     │
+│   │  - Scrapes product prices from Amazon               │     │
+│   │  - Stores prices in a CSV file                       │     │
+│   │  - Runs daily via cron                               │     │
+│   │  Current task: Add email notifications&quot;             │     │
+│   └─────────────────────────────────────────────────────┘     │
+│                                                                 │
+│   📝 Hermes Tip: Keep your memory updated so the         │
+│      agent remembers important context across sessions        │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h2>2.4 Tool Selection and Integration (11 minutes)</h2>
+<h3>Why Tools Matter</h3>
+<p>LLMs are powerful but limited — they can only generate text. <strong>Tools</strong> extend their capabilities to interact with the real world.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    LLM + TOOLS = SUPERPOWER                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   LLM ALONE:                                                       │
+│   ┌─────────────┐                                                 │
+│   │             │    Input: &quot;What&#x27;s the weather?&quot;               │
+│   │  Generate   │ ──────────────────────► &quot;Let me check...&quot;     │
+│   │   Text      │    (Can only guess or say &quot;I can&#x27;t&quot;)         │
+│   │             │                                                 │
+│   └─────────────┘                                                 │
+│                                                                     │
+│   LLM + TOOLS:                                                     │
+│   ┌─────────────┐     ┌──────────────┐                         │
+│   │             │     │  WEATHER API  │                         │
+│   │  Generate   │ ───►│  + Search     │ ──► &quot;It&#x27;s 72°F&quot;       │
+│   │   Text      │     │  + Calculator │                         │
+│   │             │     │  + Browser    │                         │
+│   └─────────────┘     └──────────────┘                         │
+│                                                                     │
+│   📝 Tools turn &quot;I don&#x27;t know&quot; into &quot;Let me find out&quot;             │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Tool Categories</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                      TOOL CATEGORIES                                │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   📡 INFORMATION GATHERING                                         │
+│   ├── web_search      → Find current information                  │
+│   ├── web_fetch      → Read specific pages                        │
+│   ├── browser        → Interact with websites                     │
+│   └── pdf            → Analyze documents                           │
+│                                                                     │
+│   💻 COMPUTATION &amp; CODE                                            │
+│   ├── exec           → Run shell commands                         │
+│   ├── code_interpreter → Execute code safely                       │
+│   └── ai_model       → Use other AI models                        │
+│                                                                     │
+│   📝 COMMUNICATION                                                  │
+│   ├── message        → Send messages (Telegram, Discord, WA)      │
+│   ├── email          → Send/receive emails                        │
+│   └── tts            → Text to speech                             │
+│                                                                     │
+│   💾 DATA &amp; FILES                                                  │
+│   ├── read           → Read files                                 │
+│   ├── write          → Create/update files                        │
+│   ├── edit           → Modify files                               │
+│   └── memory         → Store/retrieve memories                    │
+│                                                                     │
+│   🎨 MEDIA &amp; CREATIVE                                              │
+│   ├── canvas         → Generate images, UI                        │
+│   ├── image_generation → Create images from text                  │
+│   └── video          → Video analysis/generation                  │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Tool Selection Flowchart</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                  WHICH TOOL SHOULD I USE?                          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ┌─────────────────┐                                             │
+│   │ What do you     │                                             │
+│   │ need to do?     │                                             │
+│   └────────┬────────┘                                             │
+│            │                                                       │
+│            ▼                                                       │
+│   ┌─────────────────────────────────────────────────────────┐      │
+│   │                                                         │      │
+│   │  Need current info?  ────►  web_search                 │      │
+│   │         │                                                │      │
+│   │  Need to read a page?  ───► web_fetch                  │      │
+│   │         │                                                │      │
+│   │  Need to run code/commands?  ──► exec                  │      │
+│   │         │                                                │      │
+│   │  Need to send a message?  ────► message                │      │
+│   │         │                                                │      │
+│   │  Need to create/edit file?  ──► read/write/edit       │      │
+│   │         │                                                │      │
+│   │  Need to remember for later?  ──► write to memory   │      │
+│   │         │                                                │      │
+│   │  Need AI to analyze image?  ──► vision-capable model   │      │
+│   │         │                                                │      │
+│   │  Need image generation?  ─────► canvas/image_gen       │      │
+│   │         │                                                │      │
+│   │  Not sure?  ──────────────────► web_search first!      │      │
+│   │                                                         │      │
+│   └─────────────────────────────────────────────────────────┘      │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Hermes Tool Examples</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                    OPENCLAW TOOL EXAMPLES                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   📡 WEB SEARCH                                                    │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │ web_search({query: &quot;Hermes vs LangChain 2026&quot;})          │  │
+│   └─────────────────────────────────────────────────────────────┘  │
+│                                                                     │
+│   📄 READ FILE                                                     │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │ read({path: &quot;~/projects/my-app/README.md&quot;})                │  │
+│   └─────────────────────────────────────────────────────────────┘  │
+│                                                                     │
+│   💬 SEND MESSAGE (Telegram)                                       │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │ message({                                                   │  │
+│   │   channel: &quot;telegram&quot;,                                     │  │
+│   │   action: &quot;send&quot;,                                          │  │
+│   │   target: &quot;@mychat&quot;,                                       │  │
+│   │   message: &quot;Meeting starting in 5 minutes!&quot;               │  │
+│   │ })                                                         │  │
+│   └─────────────────────────────────────────────────────────────┘  │
+│                                                                     │
+│   💻 RUN COMMAND                                                   │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │ exec({command: &quot;npm run build&quot;, workdir: &quot;~/projects/web&quot;})│  │
+│   └─────────────────────────────────────────────────────────────┘  │
+│                                                                     │
+│   🎨 GENERATE IMAGE                                                │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │ canvas({                                                    │  │
+│   │   action: &quot;present&quot;,                                      │  │
+│   │   fn: &quot;generate&quot;,                                         │  │
+│   │   prompt: &quot;A friendly robot teaching humans about AI&quot;     │  │
+│   │ })                                                         │  │
+│   └─────────────────────────────────────────────────────────────┘  │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>Tool Integration in Practice</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│               TOOL CHAINING EXAMPLE                                 │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   Task: &quot;Find the latest Hermes version and check if my          │
+│          installation is up to date&quot;                               │
+│                                                                     │
+│   ┌───────────────────────────────────────────────────────────┐    │
+│   │ STEP 1: web_search                                        │    │
+│   │ Query: &quot;Hermes latest version 2026&quot;                     │    │
+│   │ → Returns: &quot;Hermes 3.2.0 released March 2026&quot;         │    │
+│   └───────────────────────────────────────────────────────────┘    │
+│                           │                                        │
+│                           ▼                                        │
+│   ┌───────────────────────────────────────────────────────────┐    │
+│   │ STEP 2: exec                                              │    │
+│   │ Command: &quot;hermes --version&quot;                             │    │
+│   │ → Returns: &quot;Hermes 3.1.8&quot;                               │    │
+│   └───────────────────────────────────────────────────────────┘    │
+│                           │                                        │
+│                           ▼                                        │
+│   ┌───────────────────────────────────────────────────────────┐    │
+│   │ STEP 3: ANALYZE &amp; RESPOND                                 │    │
+│   │ Compare: 3.2.0 vs 3.1.8                                   │    │
+│   │ → &quot;Your installation is out of date. Run:                │    │
+│   │    npm install -g hermes@latest&quot;                        │    │
+│   └───────────────────────────────────────────────────────────┘    │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+<p># EXERCISES</p>
+<h2>Exercise 1: Prompt Engineering Practice (8 minutes)</h2>
+<p>Improve these weak prompts:</p>
+<div class="tablewrap"><table><thead><tr><th>#</th><th>Weak Prompt</th><th>Improved Version</th></tr></thead><tbody><tr><td>1</td><td>"Write about dogs"</td><td></td></tr><tr><td>2</td><td>"Help me with code"</td><td></td></tr><tr><td>3</td><td>"What's the news?"</td><td></td></tr></tbody></table></div>
+<p><strong>Then test your improved prompts!</strong></p>
+<hr>
+<h2>Exercise 2: Token Counting (5 minutes)</h2>
+<p>Estimate how many tokens each input uses:</p>
+<pre><code>&quot;The cat sat on the mat.&quot; → ~______ tokens
+&quot;Artificial intelligence is transforming how we work, live, and interact 
+with technology. From chatbots to autonomous agents, AI is becoming 
+ubiquitous in modern society.&quot; → ~______ tokens</code></pre>
+<hr>
+<h2>Exercise 3: Tool Selection (7 minutes)</h2>
+<p>Match the task to the right tool:</p>
+<div class="tablewrap"><table><thead><tr><th>Task</th><th>Best Tool</th></tr></thead><tbody><tr><td>Find current stock price</td><td></td></tr><tr><td>Read a PDF report</td><td></td></tr><tr><td>Send a Telegram message</td><td></td></tr><tr><td>Create a new file</td><td></td></tr><tr><td>Run Python code</td><td></td></tr><tr><td>Generate an image</td><td></td></tr></tbody></table></div>
+<p><strong>Tools:</strong> web_search, pdf, message, write, exec, canvas</p>
+<hr>
+<h2>Exercise 4: Context Management (5 minutes)</h2>
+<p>You're having a long conversation with an AI assistant. The context is getting full. What can you do?</p>
+<ol><li>_______________</li><li>_______________</li><li>_______________</li></ol>
+<hr>
+<p># DISCUSSION QUESTIONS</p>
+<ol><li><strong>Limitations:</strong> LLMs can "hallucinate" — make up information that sounds true but isn't. How can prompt engineering help reduce hallucinations? What are the risks of relying on AI-generated information?</li><li><strong>Context Ethics:</strong> AI systems can now read entire books in context. What are the implications for copyright? Should AI be allowed to "read" copyrighted works for training?</li><li><strong>Tool Power:</strong> As AI gets better tools, it becomes more capable. What happens when AI can access your bank accounts, send emails, and make purchases? What safeguards are needed?</li><li><strong>Memory &amp; Privacy:</strong> Hermes can remember things across sessions. What happens if it remembers sensitive information (passwords, health data)? How should AI memory be managed?</li><li><strong>The Future:</strong> Some predict we'll have 1M+ token contexts soon. What becomes possible when an AI can "read" your entire life — emails, messages, files, photos — and remember everything?</li></ol>
+<hr>
+<p># QUIZ</p>
+<h2>Quiz: Module 2 - AI Literacy</h2>
+<h3>Question 1 (1 point)</h3>
+<p>What does an LLM actually "predict" when generating text? A) The correct answer to a question B) The next token in a sequence C) What the user wants to hear D) Whether the user is telling the truth <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 2 (1 point)</h3>
+<p>What is "temperature" in LLM settings? A) How fast the model responds B) How "hot" or excited the model gets C) The balance between random and predictable output D) The amount of computing power used <strong>Correct Answer:</strong> C</p>
+<hr>
+<h3>Question 3 (1 point)</h3>
+<p>What's the recommended temperature for coding tasks? A) 0.0 (deterministic) B) 0.7 (balanced) C) 1.0+ (creative) D) Doesn't matter <strong>Correct Answer:</strong> A</p>
+<hr>
+<h3>Question 4 (1 point)</h3>
+<p>Which prompting technique involves showing examples? A) Role-playing B) Chain of thought C) Few-shot prompting D) Constraint-based <strong>Correct Answer:</strong> C</p>
+<hr>
+<h3>Question 5 (1 point)</h3>
+<p>What is a "context window"? A) The UI where you type prompts B) The maximum tokens an LLM can consider at once C) The amount of memory on your computer D) The chat history displayed on screen <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 6 (1 point)</h3>
+<p>Which tool would you use to find current information on the web? A) read B) web_search C) exec D) canvas <strong>Correct Answer:</strong> B</p>
+<hr>
+<h3>Question 7 (2 points)</h3>
+<p>Name 3 techniques to manage a long conversation that exceeds the context limit:</p>
+<ol><li>_______________</li><li>_______________</li><li>_______________</li></ol>
+<p><strong>Sample Answers:</strong></p>
+<ol><li>Summarize the conversation periodically</li><li>Start new sessions with context from previous ones</li><li>Use external files/memory to store important info</li></ol>
+<hr>
+<h3>Question 8 (2 points)</h3>
+<p>Why is "being specific" important in prompt engineering? <strong>Sample Answer:</strong> Specific prompts give the AI clearer guidance on what output is expected, reducing ambiguity and improving the relevance and quality of responses. Vague prompts lead to generic or unrelated answers.</p>
+<hr>
+<h2>Quiz Answer Key</h2>
+<div class="tablewrap"><table><thead><tr><th>Q</th><th>Answer</th></tr></thead><tbody><tr><td>1</td><td>B</td></tr><tr><td>2</td><td>C</td></tr><tr><td>3</td><td>A</td></tr><tr><td>4</td><td>C</td></tr><tr><td>5</td><td>B</td></tr><tr><td>6</td><td>B</td></tr><tr><td>7</td><td>(Open)</td></tr><tr><td>8</td><td>(Open)</td></tr></tbody></table></div>
+<hr>
+<p># VISUAL AIDS SUMMARY</p>
+<h2>Key Diagrams (for reference)</h2>
+<ol><li><strong>LLM Text Generation</strong> - Tokenization → Neural Network → Sampling → Output</li><li><strong>Temperature Settings</strong> - 0 (precise) vs 0.7 (balanced) vs 1.0+ (random)</li><li><strong>Context Window</strong> - Attention mechanism visualization</li><li><strong>Memory Types</strong> - Context, System Prompt, External Memory</li><li><strong>Tool Categories</strong> - Information, Computation, Communication, Files, Media</li><li><strong>Tool Selection Flowchart</strong> - Decision tree for choosing tools</li></ol>
+<hr>
+<p># SUMMARY</p>
+<h2>Key Takeaways</h2>
+<p>✅ <strong>LLMs</strong> predict tokens (not words), trained on massive text data ✅ <strong>Temperature</strong> controls creativity vs precision:</p>
+<ul><li>0 = deterministic (coding, math)</li><li>0.7 = balanced (general use)</li><li>1.0+ = creative (writing, brainstorming)</li></ul>
+<p>✅ <strong>Prompt Engineering</strong> improves outputs through:</p>
+<ul><li>Being specific</li><li>Giving role/context</li><li>Providing structure</li><li>Using few-shot examples</li></ul>
+<p>✅ <strong>Context Window</strong> = max tokens the model can see at once</p>
+<ul><li>Manage by summarizing, external memory, or starting fresh</li></ul>
+<p>✅ <strong>Tools</strong> extend AI capabilities:</p>
+<ul><li>web_search → current info</li><li>read/write → files</li><li>exec → run commands</li><li>message → send communications</li></ul>
+<p>✅ <strong>Tool Selection</strong> depends on your goal — pick the right tool for the task</p>
+<hr>
+<p># NEXT STEPS After completing this module:</p>
+<ol><li>✅ You understand how LLMs work</li><li>✅ You can write effective prompts</li><li>✅ You know how to manage context</li><li>⏭️ Move to <strong>Module 3: Hermes Deep Dive</strong></li><li>🔄 Schedule spaced repetition review (1 day, 3 days, 7 days)</li></ol>
+<hr>
+<p><em>Module 2 complete. You now have foundational AI literacy!</em></p>
+<nav class="lesson-nav"><a href="index.html">&larr; Course map</a><a href="index.html" style="text-align:right">All lessons &rarr;</a></nav>
+<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+</main></body></html>

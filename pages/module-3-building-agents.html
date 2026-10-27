@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building agents in Hermes</title>
+<style>/* AI Upskill — course pages
+   One stylesheet for every lesson, module and the course map.
+   Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
+
+:root {
+  --pink: #E67E9F;
+  --pink-deep: #B4526F;
+  --pink-wash: #FCEFF3;
+  --ink: #131313;
+  --ink-soft: #3A3835;
+  --steel: #738DA0;
+  --steel-wash: #EEF2F5;
+  --paper: #FBF7F2;
+  --card: #FFFFFF;
+  --line: #E3DCD2;
+  --ok: #3F7D5B;
+  --warn: #B26B1F;
+  --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 26px 24px 22px;
+  border-bottom: 5px solid var(--pink);
+}
+
+.masthead .inner { max-width: var(--measure); margin: 0 auto; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.deck { margin: 0; color: #D6D1CA; font-size: 15px; max-width: 34rem; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meta span {
+  background: #262524;
+  border: 1px solid #35322F;
+  color: #EDE9E3;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  padding: 5px 10px;
+}
+
+.meta span b { color: var(--pink); font-weight: 600; }
+.meta span.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+
+/* ---------- body ---------- */
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px 80px; }
+
+.lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 26px 0 4px;
+  padding-left: 16px;
+  border-left: 5px solid var(--pink);
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 44px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2.act { border-bottom-color: var(--pink); }
+h2.act::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--pink);
+  margin-top: -2px;
+}
+
+h3 { font-size: 18px; margin: 28px 0 6px; }
+h4 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin: 22px 0 4px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--pink-deep); text-underline-offset: 2px; }
+
+ul, ol { margin: 6px 0 18px; padding-left: 22px; }
+li { margin: 7px 0; }
+li::marker { color: var(--steel); }
+
+strong { font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #F1EBE3;
+  padding: 2px 6px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--ink);
+  color: #F4EFE7;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  border-left: 4px solid var(--pink);
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; white-space: pre; }
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: var(--pink-wash);
+  border-left: 4px solid var(--pink);
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+/* ---------- tables ---------- */
+
+/* tables scroll sideways on phones rather than crushing the text */
+.tablewrap { overflow-x: auto; margin: 0 0 22px; -webkit-overflow-scrolling: touch; }
+.tablewrap table { margin: 0; min-width: 30rem; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 22px; font-size: 15px; }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #F3EDE5; font-weight: 650; }
+
+/* ---------- components ---------- */
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--steel);
+  background: var(--card);
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.callout.ok { border-left-color: var(--ok); background: #F3F8F4; }
+.callout.warn { border-left-color: var(--warn); background: #FBF4EA; }
+.callout.pink { border-left-color: var(--pink); background: var(--pink-wash); }
+.callout h4 { margin: 0 0 6px; color: inherit; font-size: 13px; letter-spacing: .1em; }
+
+.checklist { list-style: none; padding: 0; margin: 0 0 22px; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.checklist li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px; height: 15px;
+  margin-top: 4px;
+  border: 2px solid var(--ink);
+  background: transparent;
+}
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 22px; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 18px 44px;
+  margin: 0;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 650;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.grid2 > div { background: var(--card); border: 1px solid var(--line); padding: 16px; }
+.grid2 h4 { margin-top: 0; }
+
+/* ---------- footer + nav ---------- */
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 3px solid var(--ink);
+  font-size: 14px;
+}
+.lesson-nav a { display: block; max-width: 48%; }
+
+.foot {
+  margin-top: 26px;
+  color: #6B6660;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- course map ---------- */
+
+.map { list-style: none; padding: 0; margin: 24px 0 0; }
+.map > li { border: 1px solid var(--line); background: var(--card); margin: 0 0 14px; }
+.map .module-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: #F7F2EB;
+}
+.map .module-head h3 { margin: 0; font-size: 17px; }
+.map .module-head span { font-size: 12.5px; color: var(--steel); letter-spacing: .06em; text-transform: uppercase; }
+.map ol { margin: 0; padding: 12px 16px 14px 40px; }
+.map ol li { margin: 5px 0; }
+.map .artefact { color: var(--steel); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+.tile { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--pink); padding: 16px; }
+.tile .big { font-size: clamp(24px, 6vw, 32px); font-weight: 700; letter-spacing: -0.02em; display: block; }
+.tile .label { font-size: 13px; color: var(--steel); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { background: #fff; color: #000; border-bottom: 2pt solid #000; padding: 0 0 10pt; }
+  .masthead h1 { color: #000; }
+  .deck, .meta span { color: #000; }
+  .meta span { border-color: #000; }
+  .lesson-nav, .foot { display: none; }
+  h2 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 12px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .masthead { padding: 20px 18px 18px; }
+  .wrap { padding: 0 18px 64px; }
+}
+</style></head>
+<body>
+<header class="masthead"><div class="inner">
+  <p class="eyebrow">AI Upskill · Module 3</p>
+  <h1>Building agents in Hermes</h1>
+  <p class="deck">Make a working Hermes agent you can hand to someone</p>
+  <div class="meta"><span>Module <b>3 of 5</b></span><span>About <b>50 min</b></span><span>Artefact <b>build/my-agent/</b></span></div>
+</div></header>
+<main class="wrap">
+<p class="lede"><p>A working agent of your own: a profile folder with a soul, operating rules, two skills and a scheduled job, plus the three tests that prove it does what you claim.</p></p>
+<h2>Why it matters</h2>
+<p>Anyone can prompt a chat window. Almost nobody can hand another person a folder that behaves like a competent colleague on Monday morning without them present. That folder is the whole difference between using AI and orchestrating it.</p>
+<div class="callout "><h4>A word about the old edition</h4><p>Earlier versions of this module taught a different product's four-file agent model. Hermes works differently: an agent is a profile, its abilities are skills, and its hands are tools. This module is rewritten for Hermes and every command here runs on the machine you are reading this on.</p></div>
+<h2>The anatomy of an agent</h2>
+<p>Four things, and only four:</p>
+<div class="tablewrap"><table><thead><tr><th>Part</th><th>What it is</th><th>Where it lives</th></tr></thead><tbody><tr><td><strong>Profile</strong></td><td>The agent's own world: settings, sessions, memory, skills</td><td><code>~/AppData/Local/hermes/profiles/&lt;name&gt;</code></td></tr><tr><td><strong>Soul</strong></td><td>Who it is, how it talks, what it refuses</td><td><code>SOUL.md</code> in the profile</td></tr><tr><td><strong>Operating rules</strong></td><td>How it works day to day: read this first, never do that</td><td><code>AGENTS.md</code> in the profile</td></tr><tr><td><strong>Skills</strong></td><td>What it can actually do, one folder each</td><td><code>skills/&lt;skill-name&gt;/SKILL.md</code></td></tr></tbody></table></div>
+<p>Everything else, memory, cron jobs, model keys, is configuration. If you have those four, you have an agent. If you are missing any of them, you have a chatbot with a personality.</p>
+<h2>The soul is a contract, not a costume</h2>
+<p>A SOUL that says "you are a friendly assistant" produces exactly the assistant everyone else has. A SOUL worth writing contains the things that would otherwise be negotiable every session:</p>
+<ul><li>One job, in one sentence. Not five.</li><li>The order it works in: read progress, demo, hand over, check, record.</li><li>What it refuses, and why. "Never mark work complete without running the check" is worth more than</li></ul>
+<p>three paragraphs about being helpful.</p>
+<ul><li>How long a reply is. If you do not say, you get half a page.</li></ul>
+<div class="callout ok"><h4>Worked example</h4><p>The free coach in this course refuses to seal a lesson until the learner's file exists and the four checks pass, and it quotes the check output when it seals. That single rule produced the only field-test result that mattered: twelve turns, no false completions.</p></div>
+<h2>Skills: how an agent learns a job</h2>
+<p>A skill is a folder with a <code>SKILL.md</code>. The frontmatter decides whether it ever fires:</p>
+<pre><code>---
+name: invoice-triage
+description: Use when an invoice needs checking against a purchase order.
+---</code></pre>
+<p>Two rules that decide whether your skill works:</p>
+<ol><li><strong>The description is the trigger.</strong> It is the only thing the agent sees before deciding. Write the</li></ol>
+<p>situation, not the topic: "Use when a supplier invoice disagrees with the PO", not "invoice stuff".</p>
+<ol><li><strong>The body is a procedure, not an essay.</strong> Numbered steps, exact paths, a check at the end. If a</li></ol>
+<p>step can be skipped without anyone noticing, delete it or make it checkable. Put long reference material in <code>references/</code> and point at it from the body. That keeps the skill cheap to load and still complete.</p>
+<h2>Hands: tools, and the limits you set</h2>
+<p>Hermes gives the agent a terminal, a file system, a browser, scheduled jobs and memory. You decide how much of that it gets, per profile and per job.</p>
+<ul><li>Start with the smallest set that does the job. A filing agent needs files, not a browser.</li><li>Keep approvals on for anything that spends money, publishes, deletes or emails a stranger.</li><li>Write the boundary into <code>AGENTS.md</code> in plain words, because the agent reads that file every session:</li></ul>
+<p>"never send email without showing me the draft first".</p>
+<h2>Memory: what to keep and what to refuse</h2>
+<p>An agent with memory gets better at your work and worse at protecting you, in the same motion. The rule that keeps it useful:</p>
+<ul><li>Keep <strong>decisions and preferences</strong>: "uses British spelling", "never quotes scripture from memory".</li><li>Keep <strong>state</strong>: where the project is, what was sealed, what failed.</li><li>Refuse <strong>secrets and third-party personal data</strong>. Memory is a plain file on a disk; treat it that way.</li></ul>
+<h2>Schedule it</h2>
+<p>A cron job turns an agent into a colleague. Three shapes worth knowing:</p>
+<div class="tablewrap"><table><thead><tr><th>Shape</th><th>Use it for</th><th>Example</th></tr></thead><tbody><tr><td>Script only (<code>no_agent</code>)</td><td>Anything with a fixed output</td><td>Print the morning brief</td></tr><tr><td>Agent run</td><td>Anything needing judgement</td><td>Review the leads list and draft replies</td></tr><tr><td>Watcher</td><td>Anything you want silence from until it changes</td><td>CVE watch, price watch</td></tr></tbody></table></div>
+<p>The discipline that separates a useful cron from spam: <strong>silence is success</strong>. A job that has nothing to say should print nothing, and you should notice the quiet.</p>
+<h2>Check it, or it is only a claim</h2>
+<p>Three tests, in this order. If any fails, the agent is not finished.</p>
+<ol><li><strong>Routing.</strong> Ask it something that should fire skill A, then skill B. Does it pick correctly and say</li></ol>
+<p>which it opened?</p>
+<ol><li><strong>Refusal.</strong> Ask it to do the thing your <code>AGENTS.md</code> forbids. Does it decline and offer the allowed</li></ol>
+<p>alternative, or does it comply and apologise?</p>
+<ol><li><strong>Verification.</strong> Give it a task with a checkable outcome, and a plausible wrong answer. Does it run</li></ol>
+<p>the check and report the real result, or report what sounds right?</p>
+<div class="callout warn"><h4>The failure that looks like success</h4><p>An agent that answers confidently without running the check passes every casual review and fails the only one that counts. This is why the third test uses a deliberately plausible wrong answer.</p></div>
+<h2 class="act">Your turn</h2>
+<ul class="checklist"><li>Create a profile: <code>hermes profile create my-agent --description "&lt;what it is for&gt;"</code></li><li>Write <code>SOUL.md</code> with one job, the work order, two refusals and a length limit</li><li>Write <code>AGENTS.md</code> with the files it may touch and the actions it must ask about</li><li>Write two skills, each with a trigger-style description and a numbered procedure</li><li>Add one cron job and make it silent when there is nothing to report</li><li>Run the three tests and write down what each returned</li></ul>
+<h2 class="act">The check</h2>
+<p>The agent reads your profile folder and confirms:</p>
+<ol><li><code>SOUL.md</code> exists, names one job, and contains at least one explicit refusal and a reply limit.</li><li><code>AGENTS.md</code> exists and names both a permission and a prohibition.</li><li>Two skills exist, each with a <code>description</code> that starts with "Use when".</li><li><code>hermes --profile my-agent -z "which skill would you open for &lt;your trigger&gt;"</code> names the right skill.</li><li>Your three test results are recorded, including any failure.</li></ol>
+<p>Failure signs: skills with topic descriptions ("invoices"), a soul with no refusals, or a cron job that would speak every morning whether or not there is news.</p>
+<h2 class="act">Sealed when</h2>
+<p><code>build/my-agent/</code> passes the five checks and the agent has recorded the profile path, the two skill names and the cron schedule in your progress file.</p>
+<nav class="lesson-nav"><a href="index.html">&larr; Course map</a><a href="index.html" style="text-align:right">All lessons &rarr;</a></nav>
+<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+</main></body></html>

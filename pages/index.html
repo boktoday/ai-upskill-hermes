@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Upskill</title>
+<style>/* AI Upskill — course pages
+   One stylesheet for every lesson, module and the course map.
+   Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
+
+:root {
+  --pink: #E67E9F;
+  --pink-deep: #B4526F;
+  --pink-wash: #FCEFF3;
+  --ink: #131313;
+  --ink-soft: #3A3835;
+  --steel: #738DA0;
+  --steel-wash: #EEF2F5;
+  --paper: #FBF7F2;
+  --card: #FFFFFF;
+  --line: #E3DCD2;
+  --ok: #3F7D5B;
+  --warn: #B26B1F;
+  --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 26px 24px 22px;
+  border-bottom: 5px solid var(--pink);
+}
+
+.masthead .inner { max-width: var(--measure); margin: 0 auto; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.deck { margin: 0; color: #D6D1CA; font-size: 15px; max-width: 34rem; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meta span {
+  background: #262524;
+  border: 1px solid #35322F;
+  color: #EDE9E3;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  padding: 5px 10px;
+}
+
+.meta span b { color: var(--pink); font-weight: 600; }
+.meta span.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+
+/* ---------- body ---------- */
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px 80px; }
+
+.lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 26px 0 4px;
+  padding-left: 16px;
+  border-left: 5px solid var(--pink);
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 44px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2.act { border-bottom-color: var(--pink); }
+h2.act::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--pink);
+  margin-top: -2px;
+}
+
+h3 { font-size: 18px; margin: 28px 0 6px; }
+h4 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin: 22px 0 4px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--pink-deep); text-underline-offset: 2px; }
+
+ul, ol { margin: 6px 0 18px; padding-left: 22px; }
+li { margin: 7px 0; }
+li::marker { color: var(--steel); }
+
+strong { font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #F1EBE3;
+  padding: 2px 6px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--ink);
+  color: #F4EFE7;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  border-left: 4px solid var(--pink);
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; white-space: pre; }
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: var(--pink-wash);
+  border-left: 4px solid var(--pink);
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+/* ---------- tables ---------- */
+
+/* tables scroll sideways on phones rather than crushing the text */
+.tablewrap { overflow-x: auto; margin: 0 0 22px; -webkit-overflow-scrolling: touch; }
+.tablewrap table { margin: 0; min-width: 30rem; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 22px; font-size: 15px; }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #F3EDE5; font-weight: 650; }
+
+/* ---------- components ---------- */
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--steel);
+  background: var(--card);
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.callout.ok { border-left-color: var(--ok); background: #F3F8F4; }
+.callout.warn { border-left-color: var(--warn); background: #FBF4EA; }
+.callout.pink { border-left-color: var(--pink); background: var(--pink-wash); }
+.callout h4 { margin: 0 0 6px; color: inherit; font-size: 13px; letter-spacing: .1em; }
+
+.checklist { list-style: none; padding: 0; margin: 0 0 22px; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.checklist li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px; height: 15px;
+  margin-top: 4px;
+  border: 2px solid var(--ink);
+  background: transparent;
+}
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 22px; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 18px 44px;
+  margin: 0;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 650;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.grid2 > div { background: var(--card); border: 1px solid var(--line); padding: 16px; }
+.grid2 h4 { margin-top: 0; }
+
+/* ---------- footer + nav ---------- */
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 3px solid var(--ink);
+  font-size: 14px;
+}
+.lesson-nav a { display: block; max-width: 48%; }
+
+.foot {
+  margin-top: 26px;
+  color: #6B6660;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- course map ---------- */
+
+.map { list-style: none; padding: 0; margin: 24px 0 0; }
+.map > li { border: 1px solid var(--line); background: var(--card); margin: 0 0 14px; }
+.map .module-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: #F7F2EB;
+}
+.map .module-head h3 { margin: 0; font-size: 17px; }
+.map .module-head span { font-size: 12.5px; color: var(--steel); letter-spacing: .06em; text-transform: uppercase; }
+.map ol { margin: 0; padding: 12px 16px 14px 40px; }
+.map ol li { margin: 5px 0; }
+.map .artefact { color: var(--steel); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+.tile { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--pink); padding: 16px; }
+.tile .big { font-size: clamp(24px, 6vw, 32px); font-weight: 700; letter-spacing: -0.02em; display: block; }
+.tile .label { font-size: 13px; color: var(--steel); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { background: #fff; color: #000; border-bottom: 2pt solid #000; padding: 0 0 10pt; }
+  .masthead h1 { color: #000; }
+  .deck, .meta span { color: #000; }
+  .meta span { border-color: #000; }
+  .lesson-nav, .foot { display: none; }
+  h2 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 12px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .masthead { padding: 20px 18px 18px; }
+  .wrap { padding: 0 18px 64px; }
+}
+</style></head>
+<body>
+<header class="masthead"><div class="inner">
+  <p class="eyebrow">AI Upskill · Hermes edition</p>
+  <h1>AI Upskill</h1>
+  <p class="deck">Learn to orchestrate AI by building fifteen real things, one lesson at a time.</p>
+  <div class="meta"><span><span><b>15</b> lessons</span></span><span><span><b>5</b> modules</span></span><span><span><b>Hermes</b> agent</span></span><span><span>Offline <b>HTML</b> pages</span></span></div>
+</div></header>
+<main class="wrap">
+<p class="lede">A course that ends with a portfolio you made yourself, not a certificate.
+Fifteen lessons, one artefact each, checked by the agent before anything is marked done.</p>
+<div class="tiles">
+  <div class="tile"><span class="big">15</span><span class="label">lessons</span></div>
+  <div class="tile"><span class="big">5</span><span class="label">modules</span></div>
+  <div class="tile"><span class="big">15</span><span class="label">artefacts you keep</span></div>
+  <div class="tile"><span class="big">0</span><span class="label">cloud accounts needed</span></div>
+</div>
+<h2>How it runs</h2>
+<ol class="steps">
+<li>You open the lesson page and read it. It takes two minutes, not twenty.</li>
+<li>The agent builds the demo in front of you, in your own folder, and says why each choice was made.</li>
+<li>You do the same job on your own work. The page tells you exactly what to hand in.</li>
+<li>The agent runs the checks against your file and shows you the output. Pass, and the lesson is sealed.</li>
+<li>Between lessons, short reviews keep the earlier ones from fading.</li>
+</ol>
+<div class="callout pink"><h4>The rule that makes this different</h4>
+<p>Nothing is marked complete because it sounds finished. The agent opens the file, runs the check and
+quotes the result. If your page does not load, the lesson is not passed, and it says so plainly.</p></div>
+<h2>The course</h2>
+<ul class="map">
+<li><div class="module-head"><h3>Position</h3><span>4 lessons</span></div>
+<ol><li><a href="lesson-01.html">Lesson 1 - Your work, task by task</a> <span class="artefact">position/tasks.md</span></li><li><a href="lesson-02.html">Lesson 2 - The rules you work under</a> <span class="artefact">position/rules.md</span></li><li><a href="lesson-03.html">Lesson 3 - Your 90 day plan</a> <span class="artefact">position/pathway.md</span></li><li><a href="lesson-04.html">Lesson 4 - The words that get work done</a> <span class="artefact">language/my-glossary.md</span></li></ol><p style="margin:0;padding:0 16px 16px;color:#6B6660;font-size:14px">Know your work, your rules and your plan before you touch a tool.</p></li>
+<li><div class="module-head"><h3>Language</h3><span>3 lessons</span></div>
+<ol><li><a href="lesson-05.html">Lesson 5 - What a skill actually is</a> <span class="artefact">skills/installed.md</span></li><li><a href="lesson-06.html">Lesson 6 - Teach your agent once</a> <span class="artefact">skills/&lt;your-skill&gt;/SKILL.md</span></li><li><a href="lesson-07.html">Lesson 7 - Your first mini app</a> <span class="artefact">a live URL</span></li></ol><p style="margin:0;padding:0 16px 16px;color:#6B6660;font-size:14px">The words, the prompting discipline and the skills that get work done.</p></li>
+<li><div class="module-head"><h3>Build</h3><span>3 lessons</span></div>
+<ol><li><a href="lesson-08.html">Lesson 8 - An agent that does a chore</a> <span class="artefact">build/chore/</span></li><li><a href="lesson-09.html">Lesson 9 - Your portfolio</a> <span class="artefact">a live portfolio URL</span></li><li><a href="lesson-10.html">Lesson 10 - What an API is, and what it is not</a> <span class="artefact">connect/api-log.md</span></li></ol><p style="margin:0;padding:0 16px 16px;color:#6B6660;font-size:14px">Make real things: documents, pages, agents, automations.</p></li>
+<li><div class="module-head"><h3>Guardrails</h3><span>2 lessons</span></div>
+<ol><li><a href="lesson-11.html">Lesson 11 - Connected tools and webhooks</a> <span class="artefact">connect/event-log.md</span></li><li><a href="lesson-12.html">Lesson 12 - Clocks: what a cronjob is</a> <span class="artefact">automate/&lt;job&gt;/</span></li></ol><p style="margin:0;padding:0 16px 16px;color:#6B6660;font-size:14px">Security, privacy and the judgement about what never leaves the building.</p></li>
+<li><div class="module-head"><h3>Work</h3><span>3 lessons</span></div>
+<ol><li><a href="lesson-13.html">Lesson 13 - Verify before you trust</a> <span class="artefact">guardrails/verification.md</span></li><li><a href="lesson-14.html">Lesson 14 - Failure drills</a> <span class="artefact">guardrails/drills.md</span></li><li><a href="lesson-15.html">Lesson 15 - Ship and tell</a> <span class="artefact">published portfolio +</span></li></ol><p style="margin:0;padding:0 16px 16px;color:#6B6660;font-size:14px">Turn the artefacts into a portfolio, a plan and a way to keep earning.</p></li>
+</ul>
+<h2>The deeper modules</h2><ul class="map2" style="list-style:none;padding:0;margin:0 0 26px"><li><a href="module-1-agentic-revolution.html">AGENTS.md — Module 1: The Agentic Revolution</a> <span class="artefact">What agents actually are, and the loop they run</span></li><li><a href="module-2-ai-literacy.html">&gt; REWRITE NEEDED: this module still describes the OpenClaw architecture (openclaw naming x2). The prose around it is still useful, but do not teach the mechanics as written; convert them to Hermes (one profile, skills, cron jobs) first.</a> <span class="artefact">How models work, prompting, and the limits of context</span></li><li><a href="module-3-building-agents.html">Building agents in Hermes</a> <span class="artefact">Make a working Hermes agent you can hand to someone</span></li><li><a href="module-4-strategy-ethics.html">AGENTS.md — Module 4: Strategy &amp; Practical Application</a> <span class="artefact">Where AI pays, where it costs, and where it must not go</span></li><li><a href="module-5-advanced-topics.html">&gt; REWRITE NEEDED: this module still describes the OpenClaw architecture (openclaw naming x2). The prose around it is still useful, but do not teach the mechanics as written; convert them to Hermes (one profile, skills, cron jobs) first.</a> <span class="artefact">Multi-agent workflows and orchestration patterns</span></li></ul><h2>What you finish with</h2>
+<p>A folder of working artefacts: your task table, your rules card, a prompt library, a page you built,
+an agent you configured, a workflow that runs without you, a security review, a portfolio and a ninety
+day plan. Plus the habits that produced them.</p>
+
+
+<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+</main></body></html>
