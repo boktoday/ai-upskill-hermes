@@ -49,11 +49,30 @@ lesson numbers to page paths.
   page carries a REWRITE NEEDED banner rather than teaching them as Hermes.
 - **the fifteen build lessons**: unchanged in substance, now rendered as pages with module, time and artefact chips.
 
+## Five modules, all rewritten
+
+Every module is now Hermes-native writing, not converted OpenClaw text. Each follows the same shape:
+what you are making, why it matters, the ideas that actually matter, a warning callout about the standard
+failure, a checklist handover, five or six executable checks, and a sealing rule.
+
+| Module | Artefact | The idea it earns |
+|---|---|---|
+| 1 agentic revolution | `position/agent-map.md` | the ability ladder: retrieve, transform, draft, decide, act |
+| 2 ai literacy | `language/prompt-library.md` | tokens, context pressure, sampling, and checkable prompts |
+| 3 building agents | `build/my-agent/` | profile, soul, rules, skills, tools, cron, three tests |
+| 4 strategy and ethics | `strategy/business-case.md` | value in hours and dollars, a risk register, a disclosure rule |
+| 5 advanced orchestration | `build/workflow/` | four patterns, two handover mechanisms, an honest failure rate |
+
+## Videos
+
+`tools/video.py` scroll-captures each page and encodes a walkthrough at `video/`: one per module plus the
+course map. Silent, small, and good enough to send to someone deciding whether to take the course.
+
 ## Open items
 
-1. Modules 2 and 5 still carry a handful of OpenClaw references each; module 3 is clean.
-2. Model names and prices in the converted modules are dated to March 2026.
-3. Spaced repetition is specified (scheduler in `skills/spaced-repetition/references/scheduler.py`) but not yet
+1. Model names and prices in module 2 are deliberately shape-first; refresh the specifics before each cohort.
+2. Spaced repetition is specified (scheduler in `skills/spaced-repetition/references/scheduler.py`) but not yet
    wired to a cron job.
-4. The pages are local files. Serving them from aiorchestrator.com.au would make them shareable; that is a
+3. The pages are local files. Serving them from aiorchestrator.com.au would make them shareable; that is a
    separate publishing decision.
+

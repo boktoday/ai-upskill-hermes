@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AGENTS.md — Module 1: The Agentic Revolution</title>
+<title>The agentic revolution</title>
 <style>/* AI Upskill — course pages
    One stylesheet for every lesson, module and the course map.
    Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
@@ -286,320 +286,36 @@ th { background: #F3EDE5; font-weight: 650; }
 <body>
 <header class="masthead"><div class="inner">
   <p class="eyebrow">AI Upskill · Module 1</p>
-  <h1>AGENTS.md — Module 1: The Agentic Revolution</h1>
+  <h1>The agentic revolution</h1>
   <p class="deck">What agents actually are, and the loop they run</p>
-  <div class="meta"><span>Module <b>1 of 5</b></span><span>About <b>45 min</b></span></div>
+  <div class="meta"><span>Module <b>1 of 5</b></span><span>About <b>40 min</b></span><span>Artefact <b>position/agent-map.md</b></span></div>
 </div></header>
 <main class="wrap">
-<h2>Role</h2>
-<p>Teach the fundamental concepts of AI Agents vs Chatbots</p>
-<h2>Agent ID</h2>
-<p><code>module-1-agentic-revolution</code></p>
-<h2>Duration</h2>
-<p>45 minutes</p>
-<h2>Learning Objectives</h2>
-<p>By the end of this module, students will be able to:</p>
-<ol><li>Define what makes an AI "agentic"</li><li>Identify the 5 core capabilities of an AI Agent Framework</li><li>Compare and contrast chatbots vs agents</li><li>Explain why this shift in computing matters now</li></ol>
-<hr>
-<p># LESSON CONTENT</p>
-<h2>1.1 Defining the AI Agent Framework (15 minutes)</h2>
-<h3>The Five Core Capabilities</h3>
-<p>An AI Agent Framework provides the <strong>scaffolding</strong> that allows an LLM to perform tasks beyond generating text.</p>
-<pre><code>┌─────────────────────────────────────────────────────────────────┐
-│                  AI AGENT FRAMEWORK                             │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│    ┌─────────────┐   ┌─────────────┐   ┌─────────────┐       │
-│    │  PERCEPTION │   │    PLANNING │   │   ACTION    │       │
-│    │  (Sensors)  │──►│  (Reasoning)│──►│  (Tools)     │       │
-│    └─────────────┘   └─────────────┘   └─────────────┘       │
-│           │                 │                 │                 │
-│           ▼                 ▼                 ▼                 │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │                    MEMORY                            │    │
-│    │  ┌───────────┐  ┌───────────┐  ┌───────────┐        │    │
-│    │  │ Working   │  │ Semantic  │  │ Episodic  │        │    │
-│    │  │ Memory    │  │ Memory    │  │ Memory    │        │    │
-│    │  └───────────┘  └───────────┘  └───────────┘        │    │
-│    └─────────────────────────────────────────────────────┘    │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘</code></pre>
-<h3>Core Capability 1: Autonomous Execution</h3>
-<p><strong>Definition:</strong> The ability to complete multi-step tasks without continuous human intervention. <strong>Example:</strong></p>
-<ul><li>❌ Chatbot: "What's the weather?" → "It's 72°F and sunny"</li><li>✅ Agent: "Plan my weekend" → Books camping site, checks weather, suggests routes, sets calendar</li></ul>
-<p><strong>Why it matters:</strong> Agents can work while you're sleeping.</p>
-<hr>
-<h3>Core Capability 2: Tool Use</h3>
-<p><strong>Definition:</strong> Calling external functions, APIs, and services to interact with the real world. <strong>The Tool Spectrum:</strong></p>
-<pre><code>┌──────────────────────────────────────────────────────────────┐
-│                     TOOL USE CATEGORIES                      │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│  🔧 BUILT-IN TOOLS           🔌 EXTERNAL APIs               │
-│  ├── Web search               ├── Calendar                   │
-│  ├── Calculator              ├── Email                      │
-│  ├── Code interpreter        ├── CRM                        │
-│  └── File operations         ├── Database                   │
-│                              ├── Slack                       │
-│                              └── Custom APIs                 │
-│                                                              │
-│  🌐 WEBHOOKS (Event-driven)   ⚡ FUNCTION CALLING           │
-│  ├── Stripe payments          ├── OpenAI functions          │
-│  ├── Form submissions         ├── Hermes tools            │
-│  └── Database triggers        └── Custom functions           │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘</code></pre>
-<hr>
-<h3>Core Capability 3: Memory &amp; Context</h3>
-<p><strong>Definition:</strong> Maintaining state across interactions and learning from past interactions. <strong>Three Types of Memory:</strong></p>
-<div class="tablewrap"><table><thead><tr><th>Type</th><th>What It Stores</th><th>Example</th></tr></thead><tbody><tr><td><strong>Working</strong></td><td>Current conversation</td><td>"We were discussing the marketing campaign..."</td></tr><tr><td><strong>Semantic</strong></td><td>Learned knowledge</td><td>"User prefers morning meetings"</td></tr><tr><td><strong>Episodic</strong></td><td>Past experiences</td><td>"Last time we tried X, it failed"</td></tr></tbody></table></div>
-<p><strong>Analogy:</strong> Think of memory like a human brain:</p>
-<ul><li>Working memory = short-term (what you just thought)</li><li>Semantic memory = facts you know</li><li>Episodic memory = experiences you've had</li></ul>
-<hr>
-<h3>Core Capability 4: Decision Making</h3>
-<p><strong>Definition:</strong> Evaluating options and choosing actions based on goals, constraints, and context. <strong>The Decision Loop:</strong></p>
-<pre><code>┌────────────────────────────────────────────────────────────┐
-│                   THE AGENT LOOP                          │
-├────────────────────────────────────────────────────────────┤
-│                                                            │
-│    ┌─────────┐                                            │
-│    │  THINK  │ ◄─── Observe environment                    │
-│    └────┬────┘         + Retrieve memory                 │
-│         │                                                 │
-│         ▼                                                 │
-│    ┌─────────┐                                            │
-│    │ DECIDE  │ ◄─── Evaluate options                       │
-│    └────┬────┘         + Consider constraints            │
-│         │                                                 │
-│         ▼                                                 │
-│    ┌─────────┐                                            │
-│    │  ACT    │ ◄─── Execute tool                           │
-│    └────┬────┘         + Update memory                    │
-│         │                                                 │
-│         ▼                                                 │
-│    ┌─────────┐                                            │
-│    │ OBSERVE │ ◄─── Get results                            │
-│    └────┬────┘         + Check success                    │
-│         │                                                 │
-│         └──────── (repeat until goal complete)            │
-│                                                            │
-└────────────────────────────────────────────────────────────┘</code></pre>
-<hr>
-<h3>Core Capability 5: Action Chaining</h3>
-<p><strong>Definition:</strong> Breaking complex tasks into sequences of smaller actions that achieve a larger goal. <strong>Example Chain:</strong></p>
-<pre><code>User Request: &quot;Book me a flight to NYC next Friday&quot;
-CHAIN BREAKDOWN:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Step 1: Check calendar    → Find open Friday
-Step 2: Search flights   → Find NYC flights  
-Step 3: Compare prices   → Sort by price
-Step 4: Check weather    → NYC weather forecast
-Step 5: Book flight      → Purchase ticket
-Step 6: Add to calendar  → Create travel event
-Step 7: Notify user      → Send confirmation
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total: 7 actions chained together automatically</code></pre>
-<hr>
-<h2>1.2 Chatbots vs Agents (15 minutes)</h2>
-<h3>The Fundamental Shift</h3>
-<p>This is NOT just a better chatbot. It's a fundamentally different computing paradigm.</p>
-<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
-│                    CHATBOT                          AGENT              │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│    INPUT                    OUTPUT                    INPUT            │
-│  ┌────────┐              ┌─────────┐              ┌────────┐           │
-│  │ &quot;Hello&quot; │───────────►│ &quot;Hello!&quot; │              │Goal: X │           │
-│  └────────┘              └─────────┘              └────┬────┘           │
-│                                                         │                │
-│     ▲                                                    ▼                │
-│     │                                              ┌─────────┐           │
-│     │                                              │Action 1 │──┐        │
-│     │                                              └────┬────┘  │        │
-│     │                                                   │       ▼        │
-│     │                                              ┌────▼────┐           │
-│     │                                              │Action 2 │──┐        │
-│     │                                              └────┬────┘  │        │
-│     │                                                   │       ▼        │
-│     │                                              ┌────▼────┐           │
-│     │                                              │Result Y │           │
-│     │                                              └─────────┘           │
-│     │                                                    ▲                │
-│     │                                                    │                │
-│     └──────────── ONE-TO-ONE MAPPING                    │                │
-│                                                         │                │
-│                  One request → One response            └────────────────┘
-│                                                         Multi-step execution
-│                                                         to achieve goal
-└─────────────────────────────────────────────────────────────────────────┘</code></pre>
-<h3>Comparison Table</h3>
-<div class="tablewrap"><table><thead><tr><th>Dimension</th><th>Chatbot</th><th>Agent</th></tr></thead><tbody><tr><td><strong>Initiative</strong></td><td>Reactive - waits for prompt</td><td>Proactive - takes initiative</td></tr><tr><td><strong>Connectivity</strong></td><td>Isolated - no external access</td><td>Connected - uses tools/APIs</td></tr><tr><td><strong>Memory</strong></td><td>Session-only</td><td>Persistent across sessions</td></tr><tr><td><strong>Scope</strong></td><td>Single response</td><td>Multi-step workflows</td></tr><tr><td><strong>Goal</strong></td><td>Answer questions</td><td>Accomplish tasks</td></tr><tr><td><strong>Autonomy</strong></td><td>None</td><td>High</td></tr><tr><td><strong>Learning</strong></td><td>Static</td><td>Improves from feedback</td></tr></tbody></table></div>
-<h3>Real-World Examples</h3>
-<h4>Chatbot Example: Customer Service Bot</h4>
-<pre><code>User: &quot;Where&#x27;s my order?&quot;
-Bot: &quot;I can help with that! Can you provide your order number?&quot;
-User: &quot;It&#x27;s 12345&quot;
-Bot: &quot;Your order #12345 is currently in transit. 
-       Expected delivery: March 20th.&quot;</code></pre>
-<h4>Agent Example: Executive Assistant Agent</h4>
-<pre><code>User: &quot;I need to schedule a Q1 strategy meeting with the team&quot;
-Agent does:
-1. Check everyone&#x27;s calendar via API
-2. Find 2-hour slot with all attendees free
-3. Create video conference
-4. Send calendar invites
-5. Prepare agenda template
-6. Book meeting room
-7. Add to follow-up: &quot;Send meeting notes&quot;
-User receives: &quot;Done! Strategy meeting scheduled for 
-                Tuesday 2pm. Video link and agenda template 
-                attached.&quot;</code></pre>
-<hr>
-<h2>1.3 The Shift in Computing (10 minutes)</h2>
-<h3>Why This Matters NOW</h3>
-<pre><code>┌─────────────────────────────────────────────────────────────────────┐
-│                  THE CONVERGENCE                                    │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│       ┌─────────────┐        ┌─────────────┐                      │
-│       │  Powerful   │        │  Reliable   │                      │
-│       │    LLMs     │   +    │    APIs     │                      │
-│       │  (GPT-4,    │        │  (REST,     │                      │
-│       │   Claude,   │        │   Webhooks) │                      │
-│       │   Gemini)   │        │             │                      │
-│       └─────────────┘        └─────────────┘                      │
-│              │                       │                             │
-│              │                       │                             │
-│              ▼                       ▼                             │
-│       ┌─────────────────────────────────────────────┐             │
-│       │                                             │             │
-│       │         AUTONOMOUS AGENTS                   │             │
-│       │                                             │             │
-│       └─────────────────────────────────────────────┘             │
-│                                                                     │
-│                    PREVIOUSLY: Sci-Fi    NOW: Reality              │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘</code></pre>
-<h3>The Three Waves of AI</h3>
-<div class="tablewrap"><table><thead><tr><th>Wave</th><th>What</th><th>When</th><th>Example</th></tr></thead><tbody><tr><td><strong>Wave 1</strong></td><td>Rules-based</td><td>1960s-1990s</td><td>"If A, then B"</td></tr><tr><td><strong>Wave 2</strong></td><td>Machine Learning</td><td>2010s-2022</td><td>Spam filters, recommendations</td></tr><tr><td><strong>Wave 3</strong></td><td>Generative + Agents</td><td>2023+</td><td>Claude, GPT-4, AutoGPT</td></tr></tbody></table></div>
-<h3>Why Agents Are Different</h3>
-<p><strong>Traditional Software:</strong></p>
-<pre><code>Input → [Fixed Rules] → Output
-        (Programmer&#x27;s
-         intelligence)</code></pre>
-<p><strong>LLM-powered Software:</strong></p>
-<pre><code>Input → [Trained Model] → Output
-        (Learned 
-         intelligence)</code></pre>
-<p><strong>Agent-powered Software:</strong></p>
-<pre><code>Input → [Model + Tools + Memory + Goals] → Accomplished Task
-                  ↑
-           (Autonomous
-            execution)</code></pre>
-<h3>The Business Impact</h3>
-<pre><code>┌─────────────────────────────────────────────────────────────────────┐
-│                     AGENT ADOPTION TIMELINE                         │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  2024              2025              2026              2027+        │
-│  ┌───┐            ┌───┐            ┌───┐            ┌───┐         │
-│  │   │            │   │            │   │            │   │         │
-│  │ E │            │   │            │   │            │   │         │
-│  │ A │            │   │            │   │            │   │         │
-│  │ R │            │   │            │   │            │   │         │
-│  │ L │            │   │            │   │            │   │         │
-│  │ Y │            │   │            │   │            │   │         │
-│  └───┘            └───┘            └───┘            └───┘         │
-│                                                                     │
-│  Innovators        Early           Majority        Laggards        │
-│  (You!)           Adopters                                               │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘</code></pre>
-<hr>
-<p># EXERCISES</p>
-<h2>Exercise 1: Identify the Capabilities (5 minutes)</h2>
-<p>For each scenario, identify which of the 5 core capabilities is being demonstrated:</p>
-<ol><li><strong>Scenario:</strong> An agent remembers that you prefer morning meetings and schedules your meeting at 9am.</li></ol>
-<ul><li><strong>Capability:</strong> _______________</li></ul>
-<ol><li><strong>Scenario:</strong> An agent searches the web for current stock prices before recommending a portfolio.</li></ol>
-<ul><li><strong>Capability:</strong> _______________</li></ul>
-<ol><li><strong>Scenario:</strong> An agent breaks down "plan my marketing campaign" into 12 separate tasks.</li></ol>
-<ul><li><strong>Capability:</strong> _______________</li></ul>
-<ol><li><strong>Scenario:</strong> An agent notices you're running late and proactively reschedules your meetings.</li></ol>
-<ul><li><strong>Capability:</strong> _______________</li></ul>
-<hr>
-<h2>Exercise 2: Chatbot vs Agent Classification (5 minutes)</h2>
-<p>Classify each as chatbot or agent:</p>
-<div class="tablewrap"><table><thead><tr><th>#</th><th>Description</th><th>Chatbot</th><th>Agent</th></tr></thead><tbody><tr><td>1</td><td>"Hi, I'm here to help. What do you need?"</td><td></td><td></td></tr><tr><td>2</td><td>Books flight, adds to calendar, notifies contacts</td><td></td><td></td></tr><tr><td>3</td><td>"The weather tomorrow is 72°F"</td><td></td><td></td></tr><tr><td>4</td><td>Researches competitors, writes report, emails it to you</td><td></td><td></td></tr><tr><td>5</td><td>"I don't understand. Can you rephrase?"</td><td></td><td></td></tr></tbody></table></div>
-<hr>
-<h2>Exercise 3: Design Your Own Agent (10 minutes)</h2>
-<p><strong>Task:</strong> Design an agent for a real-world use case in YOUR context. <strong>Template:</strong></p>
-<pre><code>Use Case: [What task should the agent handle?]
-Target User: [Who is this for?]
-Required Capabilities:
-1. _______________
-2. _______________
-3. _______________
-Tools Needed:
-- _______________
-- _______________
-Chain of Actions:
-1. _______________
-2. _______________
-3. _______________
-4. _______________
-Memory Needed:
-- _______________</code></pre>
-<hr>
-<p># DISCUSSION QUESTIONS</p>
-<ol><li><strong>Reflection:</strong> What's a task you do repeatedly that an agent could automate? What capabilities would it need?</li><li><strong>Ethics:</strong> If an agent makes a mistake (books wrong flight, sends email to wrong person), who is responsible - the user, the developer, or the AI company?</li><li><strong>Future:</strong> What happens to "chatbot" jobs as agents become more capable? What new jobs might emerge?</li><li><strong>Privacy:</strong> Agents need access to your data (email, calendar, files) to be useful. What are the privacy implications?</li></ol>
-<hr>
-<p># QUIZ</p>
-<h2>Quiz: Module 1 - The Agentic Revolution</h2>
-<h3>Question 1 (1 point)</h3>
-<p>What are the 5 core capabilities of an AI Agent Framework? A) Reading, Writing, Math, Logic, Creativity B) Autonomous Execution, Tool Use, Memory, Decision Making, Action Chaining C) Input, Processing, Output, Storage, Network D) Language, Vision, Audio, Action, Planning <strong>Correct Answer:</strong> B</p>
-<hr>
-<h3>Question 2 (1 point)</h3>
-<p>What's the main difference between a chatbot and an agent? A) Chatbots use AI, agents use rules B) Chatbots are reactive, agents are proactive C) Agents are slower than chatbots D) Chatbots can see, agents cannot <strong>Correct Answer:</strong> B</p>
-<hr>
-<h3>Question 3 (1 point)</h3>
-<p>Which type of memory stores learned facts about user preferences? A) Working Memory B) Episodic Memory C) Semantic Memory D) Short-term Memory <strong>Correct Answer:</strong> C</p>
-<hr>
-<h3>Question 4 (1 point)</h3>
-<p>In the agent loop, what happens after "ACT"? A) Think again B) Observe results C) Decide next action D) End <strong>Correct Answer:</strong> B</p>
-<hr>
-<h3>Question 5 (1 point)</h3>
-<p>What makes 2023+ different from previous AI waves? A) AI can now read B) Generative AI + Agents combined C) AI is faster D) AI is cheaper <strong>Correct Answer:</strong> B</p>
-<hr>
-<h3>Question 6 (1 point)</h3>
-<p>What's "action chaining" in agent terms? A) Linking multiple agents together B) Breaking complex tasks into sequences of smaller actions C) Connecting tools to APIs D) Sequencing API calls <strong>Correct Answer:</strong> B</p>
-<hr>
-<h3>Question 7 (2 points)</h3>
-<p>A user asks an agent to "plan my vacation to Japan." List 3 actions the agent might chain together:</p>
-<ol><li>_______________</li><li>_______________</li><li>_______________</li></ol>
-<p><strong>Sample Answers:</strong></p>
-<ol><li>Search flights and hotels</li><li>Check visa requirements</li><li>Create daily itinerary</li></ol>
-<hr>
-<h3>Question 8 (2 points)</h3>
-<p>Why is "autonomous execution" important for business use cases? <strong>Sample Answer:</strong> It allows agents to complete multi-step tasks without requiring constant human oversight, enabling 24/7 productivity and freeing up human time for higher-value work.</p>
-<hr>
-<h2>Quiz Answer Key</h2>
-<div class="tablewrap"><table><thead><tr><th>Q</th><th>Answer</th></tr></thead><tbody><tr><td>1</td><td>B</td></tr><tr><td>2</td><td>B</td></tr><tr><td>3</td><td>C</td></tr><tr><td>4</td><td>B</td></tr><tr><td>5</td><td>B</td></tr><tr><td>6</td><td>B</td></tr><tr><td>7</td><td>(Open)</td></tr><tr><td>8</td><td>(Open)</td></tr></tbody></table></div>
-<hr>
-<p># VISUAL AIDS SUMMARY</p>
-<h2>Key Diagrams (for reference)</h2>
-<ol><li><strong>AI Agent Framework</strong> - Perception, Planning, Action, Memory</li><li><strong>The Agent Loop</strong> - Think → Decide → Act → Observe</li><li><strong>Chatbot vs Agent</strong> - Reactive vs Proactive</li><li><strong>The Convergence</strong> - LLMs + APIs = Agents</li><li><strong>Agent Adoption Timeline</strong> - Innovators to Laggards</li></ol>
-<hr>
-<p># SUMMARY</p>
-<h2>Key Takeaways</h2>
-<p>✅ <strong>AI Agent Framework</strong> = scaffolding that gives LLMs tools, memory, and action capabilities ✅ <strong>5 Core Capabilities:</strong></p>
-<ol><li>Autonomous Execution</li><li>Tool Use</li><li>Memory &amp; Context</li><li>Decision Making</li><li>Action Chaining</li></ol>
-<p>✅ <strong>Chatbot vs Agent:</strong> Reactive vs Proactive ✅ <strong>The Shift:</strong> We're moving from "ask for answer" to "give task, get result" ✅ <strong>Why Now:</strong> Powerful LLMs + Reliable APIs = Practical Agents</p>
-<hr>
-<p># NEXT STEPS After completing this module:</p>
-<ol><li>✅ You understand agent fundamentals</li><li>⏭️ Move to <strong>Module 2: The Tech Stack of 2026</strong></li><li>🔄 Schedule spaced repetition review (1 day, 3 days, 7 days)</li></ol>
-<hr>
-<p><em>Module 1 complete. You're ready for the technical deep dive!</em></p>
+<p class="lede"><p>A one-page map of where agents already touch your work, what they still cannot do, and the first task you will hand to one.</p></p>
+<h2>Why it matters</h2>
+<p>Two people will lose their jobs in the next two years: the one who thought agents were magic, and the one who thought they were nothing. The map you make today is how you avoid both, because it separates what an agent can genuinely carry from what only looks like it can.</p>
+<h2>What an agent actually is</h2>
+<p>An agent is a model with four things bolted on. Remove any one and you are back to a chatbot:</p>
+<div class="tablewrap"><table><thead><tr><th>Part</th><th>What it gives</th><th>What happens without it</th></tr></thead><tbody><tr><td><strong>Model</strong></td><td>Judgement and language</td><td>Nothing runs at all</td></tr><tr><td><strong>Tools</strong></td><td>Hands: files, terminal, browser, email</td><td>It can only talk about the work</td></tr><tr><td><strong>Memory</strong></td><td>Continuity between sessions</td><td>Every conversation starts cold</td></tr><tr><td><strong>A loop</strong></td><td>The ability to act, look, and act again</td><td>One-shot answers, no follow-through</td></tr></tbody></table></div>
+<p>The loop is what people underestimate. A chatbot answers; an agent tries, checks the result against reality, and adjusts. When you see an agent do something impressive, it is almost always the loop, not the model.</p>
+<div class="callout pink"><h4>The difference in one sentence</h4><p>A chatbot tells you how to check a spreadsheet. An agent opens the spreadsheet, checks it, tells you what it found, and asks before it changes anything.</p></div>
+<h2>Where agents are genuinely good</h2>
+<ul><li><strong>Reading a lot and summarising honestly</strong>, with the source attached.</li><li><strong>Turning a rough instruction into a finished artefact</strong>: a page, a letter, a script, a table.</li><li><strong>Doing the same judgement many times in a row</strong>, consistently, without getting bored.</li><li><strong>Checking their own work when you tell them how</strong>: running the test, opening the page, comparing the totals.</li></ul>
+<h2>Where they fail, and will keep failing</h2>
+<ul><li><strong>Anything needing taste that has not been written down.</strong> They will produce the average of the internet.</li><li><strong>Anything needing a relationship.</strong> They cannot tell when a client is frightened.</li><li><strong>Anything where being confidently wrong is expensive</strong> and no check exists.</li><li><strong>Long chains with no verification.</strong> Four small 90 per cent steps is a 65 per cent outcome.</li></ul>
+<div class="callout warn"><h4>The trap to watch for</h4><p>An agent that is wrong fluently is more dangerous than one that fails loudly. Your job is not to trust it more; it is to build the checks that make trust unnecessary.</p></div>
+<h2>The ability ladder</h2>
+<p>Where most work sits, from safest to hardest to automate:</p>
+<ol><li><strong>Retrieve</strong>: find the thing, quote it, cite it. Very safe.</li><li><strong>Transform</strong>: rewrite, summarise, translate, reformat. Safe with a review step.</li><li><strong>Draft</strong>: produce a first version of something you would have written. Safe with editing.</li><li><strong>Decide</strong>: choose between options. Needs explicit rules and an audit trail.</li><li><strong>Act</strong>: send, pay, delete, publish. Needs approval gates, always.</li></ol>
+<p>Most of the value in your first year is in levels 1 to 3. Most of the disasters are at level 5.</p>
+<h2 class="act">Your turn</h2>
+<ul class="checklist"><li>List five tasks from your week, one per row, in <code>position/agent-map.md</code></li><li>Put each on a rung of the ability ladder (1 to 5)</li><li>For each, name the check that would prove the work was done correctly</li><li>Mark one task you would hand to an agent this week, and one you would never hand over</li><li>Write one sentence on why the never-task stays yours</li></ul>
+<h2 class="act">The check</h2>
+<p>The agent reads your file and confirms:</p>
+<ol><li>Five real tasks from your week, not categories.</li><li>Each has a rung from 1 to 5, and the rung is defensible against the ladder above.</li><li>Each has a check that a machine could actually run, or an honest note that no check exists.</li><li>At least one task is marked never, with a reason that is about the work and not about your feelings.</li><li>The task you would hand over this week is level 1 to 3.</li></ol>
+<p>Failure signs: a page of abstractions, checks that read "I would review it", or a never-task that is only there because it feels risky.</p>
+<h2 class="act">Sealed when</h2>
+<p><code>position/agent-map.md</code> passes the five checks and the map is written into your progress file with the rung counts, so later lessons can point back to it.</p>
 <nav class="lesson-nav"><a href="index.html">&larr; Course map</a><a href="index.html" style="text-align:right">All lessons &rarr;</a></nav>
 <p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
 </main></body></html>
