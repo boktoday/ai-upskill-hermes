@@ -240,7 +240,7 @@ def page(title, eyebrow, deck, meta_chips, body, nav='', extra_head=''):
 <main class="wrap">
 %s
 %s
-<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+<p class="foot">AI Upskill, Hermes edition. Free, offline, and yours to keep. Fifteen lessons, five modules, a fixed checker for every artefact.</p>
 </main></body></html>
 """ % (html.escape(title), CSS, extra_head, html.escape(eyebrow), html.escape(title),
        ('<p class="deck">%s</p>' % inline(deck)) if deck else '', chips, body, nav)
@@ -256,15 +256,22 @@ def build_lesson(num, path, prev_link, next_link):
     for n, sec in enumerate(sections, 1):
         heading = sec['title']
         if heading.lower().startswith('what you are making'):
-            parts.append('<p class="lede">%s</p>' % md_blocks('\n'.join(sec['lines'])))
+            # first on the page it can stand alone; after a recall opener it needs its own heading
+            if parts:
+                parts.append('<h2>What you are making</h2>\n<p class="lede">%s</p>'
+                             % md_blocks('\n'.join(sec['lines'])))
+            else:
+                parts.append('<p class="lede">%s</p>' % md_blocks('\n'.join(sec['lines'])))
             continue
         body = md_blocks('\n'.join(sec['lines']), steps_in=('your turn' in heading.lower()))
         accent = ' class="act"' if heading.lower().startswith(('your turn', 'the check', 'sealed when')) else ''
         parts.append('<h2%s>%s</h2>\n%s' % (accent, inline(heading), body))
     if num in RUBRICS:
+        chunk = RUBRICS[num].lstrip('\n')
+        chunk = re.sub(r'^##\s*', '', chunk)   # the section heading is already rendered above
         parts.append('<h2>The standard</h2>\n<p class="lede-note">Published before you start, so nobody is '
                      'graded against a standard they have not seen. <a href="rubrics.html">All rubrics</a>.</p>\n'
-                     + md_blocks(RUBRICS[num]))
+                     + md_blocks(chunk))
     chips = [meta.replace('·', '&middot;') if False else 'Module <b>%s</b>' % MODULE_OF[num - 1][1],
              'About <b>%s</b>' % (re.search(r'about (\d+) minutes', meta).group(1) + ' min'
                                   if re.search(r'about (\d+) minutes', meta) else '40 min')]
