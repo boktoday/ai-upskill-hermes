@@ -1,0 +1,45 @@
+{
+ "lesson": 10,
+ "title": "What an API is, and what it is not",
+ "artefact": "connect/api-log.md",
+ "checks": [
+  {
+   "type": "urls",
+   "file": "connect/api-log.md",
+   "min": 1,
+   "label": "the API endpoint is recorded"
+  },
+  {
+   "type": "present",
+   "file": "connect/api-log.md",
+   "patterns": [
+    "\\b(200|201|400|401|403|404|429|500)\\b"
+   ],
+   "label": "a real status code is recorded"
+  },
+  {
+   "type": "present",
+   "file": "connect/api-log.md",
+   "patterns": [
+    "\\{[^}]*\\}"
+   ],
+   "label": "a response shape is recorded"
+  },
+  {
+   "type": "has_any",
+   "file": "connect/api-log.md",
+   "any_of": [
+    "request",
+    "response",
+    "header"
+   ],
+   "label": "the log names the request or the response"
+  },
+  {
+   "type": "words",
+   "file": "connect/api-log.md",
+   "min": 100,
+   "label": "written up in your own words"
+  }
+ ]
+}

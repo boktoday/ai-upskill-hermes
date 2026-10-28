@@ -1,0 +1,46 @@
+{
+ "lesson": 6,
+ "title": "Teach your agent once",
+ "artefact": "skills/<your-skill>/SKILL.md",
+ "checks": [
+  {
+   "type": "files",
+   "glob": "skills/*/SKILL.md",
+   "min": 1,
+   "label": "a SKILL.md exists"
+  },
+  {
+   "type": "files",
+   "glob": "skills/*/test-log.md",
+   "min": 1,
+   "label": "a test log exists"
+  },
+  {
+   "type": "dates",
+   "file": "skills/*/test-log.md",
+   "min": 1,
+   "label": "the test log is dated"
+  },
+  {
+   "type": "words",
+   "file": "skills/*/test-log.md",
+   "min": 25,
+   "label": "the test log records what happened"
+  },
+  {
+   "type": "frontmatter",
+   "file": "skills/*/SKILL.md",
+   "keys": [
+    "name",
+    "description"
+   ],
+   "label": "the skill declares a name and a description"
+  },
+  {
+   "type": "words",
+   "file": "skills/*/SKILL.md",
+   "min": 100,
+   "label": "the skill has real instructions"
+  }
+ ]
+}

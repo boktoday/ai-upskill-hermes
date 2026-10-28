@@ -1,0 +1,34 @@
+{
+ "lesson": 13,
+ "title": "Verify before you trust",
+ "artefact": "guardrails/verification.md",
+ "checks": [
+  {
+   "type": "rows",
+   "file": "guardrails/verification.md",
+   "min": 3,
+   "label": "at least three verification steps"
+  },
+  {
+   "type": "col",
+   "file": "guardrails/verification.md",
+   "headers": [
+    "how i check",
+    "how you check",
+    "check"
+   ],
+   "min_chars": 12,
+   "label": "each step says how you check it"
+  },
+  {
+   "type": "has_any",
+   "file": "guardrails/verification.md",
+   "any_of": [
+    "fail",
+    "wrong",
+    "catch"
+   ],
+   "label": "the table says what failure looks like"
+  }
+ ]
+}

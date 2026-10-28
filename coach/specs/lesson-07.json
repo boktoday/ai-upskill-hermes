@@ -1,0 +1,19 @@
+{
+ "lesson": 7,
+ "title": "Your first mini app",
+ "artefact": "build/app-url.md",
+ "checks": [
+  {
+   "type": "urls",
+   "file": "build/app-url.md",
+   "min": 1,
+   "label": "a live app URL is recorded"
+  },
+  {
+   "type": "words",
+   "file": "build/app-url.md",
+   "min": 25,
+   "label": "the note says what it does and who it is for"
+  }
+ ]
+}

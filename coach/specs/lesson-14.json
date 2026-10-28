@@ -1,0 +1,30 @@
+{
+ "lesson": 14,
+ "title": "Failure drills",
+ "artefact": "guardrails/drills.md",
+ "checks": [
+  {
+   "type": "rows",
+   "file": "guardrails/drills.md",
+   "min": 2,
+   "label": "at least two drills run"
+  },
+  {
+   "type": "col",
+   "file": "guardrails/drills.md",
+   "headers": [
+    "what happened",
+    "result",
+    "outcome"
+   ],
+   "min_chars": 15,
+   "label": "each drill records what happened"
+  },
+  {
+   "type": "words",
+   "file": "guardrails/drills.md",
+   "min": 100,
+   "label": "written up, not a tick list"
+  }
+ ]
+}

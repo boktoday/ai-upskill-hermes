@@ -1,0 +1,34 @@
+{
+ "lesson": 5,
+ "title": "What a skill actually is",
+ "artefact": "skills/installed.md",
+ "checks": [
+  {
+   "type": "rows",
+   "file": "skills/installed.md",
+   "min": 3,
+   "label": "at least three skills inspected"
+  },
+  {
+   "type": "col",
+   "file": "skills/installed.md",
+   "headers": [
+    "when",
+    "trigger",
+    "fires"
+   ],
+   "min_chars": 15,
+   "label": "each skill says when it fires"
+  },
+  {
+   "type": "has_any",
+   "file": "skills/installed.md",
+   "any_of": [
+    "trigger",
+    "when",
+    "fires"
+   ],
+   "label": "the log talks about triggers"
+  }
+ ]
+}

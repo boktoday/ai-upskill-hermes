@@ -1,0 +1,83 @@
+{
+ "lesson": 1,
+ "title": "Your work, task by task",
+ "artefact": "position/tasks.md",
+ "checks": [
+  {
+   "type": "rows",
+   "file": "position/tasks.md",
+   "min": 8,
+   "max": 12,
+   "label": "row count is within 8 to 12"
+  },
+  {
+   "type": "col",
+   "file": "position/tasks.md",
+   "headers": [
+    "how often",
+    "frequency",
+    "how regular"
+   ],
+   "min_chars": 4,
+   "label": "every row says how often"
+  },
+  {
+   "type": "col_any",
+   "file": "position/tasks.md",
+   "headers": [
+    "label"
+   ],
+   "any_of": [
+    "machine",
+    "human",
+    "agent",
+    "ai"
+   ],
+   "min_rows": 8,
+   "label": "every row carries a label"
+  },
+  {
+   "type": "col_any",
+   "file": "position/tasks.md",
+   "headers": [
+    "label"
+   ],
+   "any_of": [
+    "human only",
+    "human-only"
+   ],
+   "min_rows": 3,
+   "label": "at least three human-only rows"
+  },
+  {
+   "type": "col",
+   "file": "position/tasks.md",
+   "headers": [
+    "evidence",
+    "reason"
+   ],
+   "min_chars": 40,
+   "label": "each row has a reason in the evidence column"
+  },
+  {
+   "type": "col_any",
+   "file": "position/tasks.md",
+   "headers": [
+    "label"
+   ],
+   "any_of": [
+    "machine"
+   ],
+   "min_rows": 1,
+   "label": "at least one machine-carried row"
+  },
+  {
+   "type": "absent",
+   "file": "position/tasks.md",
+   "patterns": [
+    "\\b(manager|coordinator|specialist|officer|executive)\\b"
+   ],
+   "label": "no row reads as a whole job"
+  }
+ ]
+}

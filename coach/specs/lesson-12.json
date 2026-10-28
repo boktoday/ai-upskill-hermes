@@ -1,0 +1,32 @@
+{
+ "lesson": 12,
+ "title": "Clocks: what a cronjob is",
+ "artefact": "automate/<job>/",
+ "checks": [
+  {
+   "type": "files",
+   "glob": "automate/*/*",
+   "min": 2,
+   "label": "the job folder holds files"
+  },
+  {
+   "type": "files",
+   "glob": "automate/*/*log*",
+   "min": 1,
+   "label": "a run log exists"
+  },
+  {
+   "type": "has_any",
+   "file": "automate/*/*log*",
+   "any_of": [
+    "06:",
+    "07:",
+    "AM",
+    "PM",
+    "cron",
+    "daily"
+   ],
+   "label": "the log shows when it ran"
+  }
+ ]
+}

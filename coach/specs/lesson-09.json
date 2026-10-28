@@ -1,0 +1,19 @@
+{
+ "lesson": 9,
+ "title": "Your portfolio",
+ "artefact": "build/portfolio-url.md",
+ "checks": [
+  {
+   "type": "urls",
+   "file": "build/portfolio-url.md",
+   "min": 1,
+   "label": "the portfolio URL is recorded"
+  },
+  {
+   "type": "words",
+   "file": "build/portfolio-url.md",
+   "min": 20,
+   "label": "the note says what three things it proves"
+  }
+ ]
+}

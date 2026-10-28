@@ -1,0 +1,37 @@
+{
+ "lesson": 3,
+ "title": "Your 90 day plan",
+ "artefact": "position/pathway.md",
+ "checks": [
+  {
+   "type": "headings",
+   "file": "position/pathway.md",
+   "all": [
+    "90 day"
+   ],
+   "label": "the plan is framed as 90 days"
+  },
+  {
+   "type": "dates",
+   "file": "position/pathway.md",
+   "min": 3,
+   "label": "three dated commitments"
+  },
+  {
+   "type": "has_any",
+   "file": "position/pathway.md",
+   "any_of": [
+    "skill",
+    "artefact",
+    "person"
+   ],
+   "label": "the plan names a skill, an artefact or a person"
+  },
+  {
+   "type": "words",
+   "file": "position/pathway.md",
+   "min": 100,
+   "label": "long enough to be useful"
+  }
+ ]
+}

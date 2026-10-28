@@ -1,0 +1,29 @@
+{
+ "lesson": 15,
+ "title": "Ship and tell",
+ "artefact": "build/account.md",
+ "checks": [
+  {
+   "type": "urls",
+   "file": "build/published.md",
+   "min": 2,
+   "label": "portfolio and profile URLs recorded"
+  },
+  {
+   "type": "words",
+   "file": "build/account.md",
+   "min": 80,
+   "label": "the account explains what you built and what is next"
+  },
+  {
+   "type": "has_any",
+   "file": "build/account.md",
+   "any_of": [
+    "next",
+    "shipped",
+    "going to"
+   ],
+   "label": "the account looks forward"
+  }
+ ]
+}

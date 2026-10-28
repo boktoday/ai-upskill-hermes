@@ -1,0 +1,29 @@
+{
+ "lesson": 11,
+ "title": "Connected tools and webhooks",
+ "artefact": "connect/event-log.md",
+ "checks": [
+  {
+   "type": "has_any",
+   "file": "connect/event-log.md",
+   "any_of": [
+    "event",
+    "payload",
+    "body"
+   ],
+   "label": "the log describes the event that fired"
+  },
+  {
+   "type": "dates",
+   "file": "connect/event-log.md",
+   "min": 1,
+   "label": "the event is timestamped"
+  },
+  {
+   "type": "words",
+   "file": "connect/event-log.md",
+   "min": 80,
+   "label": "written up in your own words"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "lesson": 4,
+ "title": "The words that get work done",
+ "artefact": "language/my-glossary.md",
+ "checks": [
+  {
+   "type": "rows",
+   "file": "language/my-glossary.md",
+   "min": 10,
+   "max": 60,
+   "label": "at least ten terms"
+  },
+  {
+   "type": "col",
+   "file": "language/my-glossary.md",
+   "headers": [
+    "in my words",
+    "meaning",
+    "definition",
+    "what it means"
+   ],
+   "min_chars": 20,
+   "label": "every term has a plain-words definition"
+  },
+  {
+   "type": "words",
+   "file": "language/my-glossary.md",
+   "min": 150,
+   "label": "the definitions are written out"
+  }
+ ]
+}

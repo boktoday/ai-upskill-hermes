@@ -1,0 +1,55 @@
+{
+ "lesson": 2,
+ "title": "The rules you work under",
+ "artefact": "position/rules.md",
+ "checks": [
+  {
+   "type": "headings",
+   "file": "position/rules.md",
+   "all": [
+    "never paste",
+    "employer",
+    "owns",
+    "verify"
+   ],
+   "label": "the card has all four headings"
+  },
+  {
+   "type": "words",
+   "file": "position/rules.md",
+   "min": 120,
+   "label": "the card is written out, not a stub"
+  },
+  {
+   "type": "files",
+   "glob": "position/redaction-*.md",
+   "min": 2,
+   "label": "a before and after redaction exist"
+  },
+  {
+   "type": "present",
+   "file": "position/redaction-after.md",
+   "patterns": [
+    "\\[[^\\]]+\\]|<<[^>]+>>|\\{[^}]+\\}"
+   ],
+   "label": "the after version uses placeholders"
+  },
+  {
+   "type": "absent",
+   "file": "position/redaction-after.md",
+   "patterns": [
+    "\\b0\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{3}\\b",
+    "[\\w.+-]+@[\\w-]+\\.[\\w.]+"
+   ],
+   "label": "the after version holds no phone number or email"
+  },
+  {
+   "type": "absent",
+   "file": "position/rules.md",
+   "patterns": [
+    "(sk-[A-Za-z0-9]{16,}|gh[pousr]_[A-Za-z0-9]{20,})"
+   ],
+   "label": "no credentials stored in the card"
+  }
+ ]
+}

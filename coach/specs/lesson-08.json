@@ -1,0 +1,25 @@
+{
+ "lesson": 8,
+ "title": "An agent that does a chore",
+ "artefact": "build/chore/",
+ "checks": [
+  {
+   "type": "files",
+   "glob": "build/chore/*",
+   "min": 2,
+   "label": "the chore folder holds work, not an empty shell"
+  },
+  {
+   "type": "files",
+   "glob": "build/chore/*log*",
+   "min": 1,
+   "label": "a run log exists"
+  },
+  {
+   "type": "dates",
+   "file": "build/chore/run-log.md",
+   "min": 1,
+   "label": "the log is dated"
+  }
+ ]
+}
