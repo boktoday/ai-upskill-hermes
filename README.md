@@ -1,78 +1,101 @@
-# AI Upskill, Hermes edition
+# AI Upskill: the course pack
 
-The course, rebuilt so Hermes delivers it and every lesson has a page that looks like it was made on purpose.
+The reading behind the free AI Orchestrator agent. Five modules, fifteen lessons, twenty-one pages, six short
+walkthrough videos and a set of fixed checkers. Read it on a laptop with no internet connection, print it, or
+let the agent walk you through it.
 
-## What is here
+Free, and it stays free.
+
+## This pack and the agent
+
+Two repositories, one course.
+
+- **[ai-orchestrator-agent](https://github.com/boktoday/ai-orchestrator-agent)** is the agent. Install that if
+  you want to be taught: it demonstrates a task, hands it over, then checks your file against a fixed standard
+  before it will mark anything done.
+- **This repository** is the material. The same five modules as pages you can read, print or hand to someone
+  else, plus the checkers and the build tools.
+
+You do not need this pack to take the course, and you do not need the agent to read it. Most people will want
+both.
+
+## What is inside
+
+| Path | What it is |
+|---|---|
+| `pages/` | Twenty-one self-contained pages: a course map, five module pages, fifteen lesson pages. One stylesheet, no tracking, no network calls. |
+| `content/` | The five modules as markdown, if you would rather read plain text or translate it. |
+| `video/` | Six silent walkthroughs, one per module plus the course map. |
+| `coach/` | The fixed checkers and their specs. This is the part that stops an agent marking its own homework. |
+| `tools/` | The renderer, the video builder and the page screenshots. |
+
+## Read it
+
+Open `pages/index.html` in any browser. That is the whole installation. Every page is one file with its styles
+inline, so the pack works from a USB stick, on a train, or on a locked-down work laptop with no admin rights.
+
+To keep a copy: print any page to PDF. The pages are set for A4 and use a print stylesheet.
+
+A phone needs a web address rather than a folder, so if you want to read on a phone, host `pages/` anywhere
+static (GitHub Pages, Netlify, Vercel, any web server) and open the URL. Nothing in the pages calls home, so
+hosting costs nothing beyond the file host.
+
+## The five modules
+
+1. **The agentic revolution.** What a model, a tool, a memory and a loop actually are, and the ability ladder
+   from retrieve to act. Artefact: your task map.
+2. **AI literacy.** Tokens, context, sampling, and how to write a prompt you can check. Artefact: your prompt
+   library.
+3. **Building agents.** A profile, a soul, rules, skills, tools, a scheduled job, and three tests before you
+   trust any of it. Artefact: your own agent.
+4. **Strategy and ethics.** Value in hours and dollars, a risk register, a disclosure rule, and the parts of
+   your work that should stay human. Artefact: a business case.
+5. **Advanced orchestration.** Four patterns, two handover mechanisms, and an honest failure rate. Artefact:
+   a two-agent workflow that runs.
+
+## Why the checks are fixed
+
+An agent that writes its own test will pass it. We watched that happen: two lessons were sealed as complete,
+then failed an independent checker on missing detail. So every lesson now has a spec in `coach/specs/` and one
+read-only script, `coach/check.py`, that reads your artefact and prints PASS or FAIL per rule. The agent may run
+it and quote it. It may not edit it.
+
+Run it yourself at any time:
 
 ```
-design/course.css        one stylesheet for every page: charcoal, deep pink, warm paper, squared edges
-content/                 rewritten module material (module 3 is Hermes-native; the rest is converted)
-tools/render.py          markdown -> HTML pages (index, 15 lessons, 5 modules)
-tools/shots.py           screenshots and the printable PDF
-pages/                   the built course: index.html, lesson-01..15.html, module-1..5.html
-shots/                   phone and desktop screenshots, course-index.pdf
+python coach/check.py 1          # checks position/tasks.md against lesson 1
+python coach/check.py --list     # every lesson and the artefact it expects
 ```
 
-## Rebuild
+Each check names the file, the rule, and what would fix it. No account, no upload, no scoring service: your
+work never leaves your machine.
 
-```
-python tools/render.py     # writes pages/
-python tools/shots.py      # screenshots + PDF
-```
+## What it is not
 
-No build system, no npm, no network. Each page embeds the stylesheet, so a single file is the whole lesson.
+Not a certificate, not an accredited qualification, and not a promise about your job. It is task-level
+literacy: what in your work an AI can carry, what it can draft while you check, and what should stay yours.
 
-## Install the agent
+## Cost
 
-The profile lives at `%LOCALAPPDATA%\hermes\profiles\ai-upskill` and carries the pages in `pages/`:
+The pack is free. If you use the agent, you pay your own model usage, typically a few dollars a month for
+coursework. The agent can run on free model tiers; it is slower and less reliable there, and the course says so
+plainly.
 
-```
-hermes --profile ai-upskill -z "start lesson 1"
-```
+## The Saturday
 
-Nine skills: `agentic-revolution`, `ai-literacy`, `building-agents`, `strategy-ethics`, `advanced-topics`,
-`knowledge-check`, `spaced-repetition`, `project-based`, `build-course`, plus `course-pages` which maps
-lesson numbers to page paths.
+The agent and this pack are free and always will be. The only paid thing is a live Saturday build with Brendan,
+capped at fifteen people, where your portfolio gets reviewed by a human and you leave with it published. The
+course mentions it once, in the last lesson, and never pushes. Nothing here depends on you buying it.
 
-## The teaching contract
+More at [aiorchestrator.com.au](https://www.aiorchestrator.com.au/).
 
-- The page is the textbook. The agent names the lesson, gives the page path, and says what to produce.
-- The agent demos on its own material, hands over, then runs the checks against the learner's file.
-- Nothing is sealed without the artefact existing and the checks passing, and the agent quotes the check output.
-- Replies stay under 120 words unless the learner asks for depth.
+## Licence
 
-## What is rewritten, what is converted
+Text and pages: CC BY-SA 4.0, so you may copy, translate and teach it, with credit and under the same terms.
+Code in `tools/` and `coach/`: MIT. See [LICENSE.md](LICENSE.md).
 
-- **module 3, building agents**: rewritten for Hermes (profiles, skills, tools, cron). The old edition taught a
-  different product's four-file agent model; that material is gone rather than find-and-replaced.
-- **modules 1, 2, 4, 5**: converted from the March 2026 OpenClaw edition. Where OpenClaw mechanics remain, the
-  page carries a REWRITE NEEDED banner rather than teaching them as Hermes.
-- **the fifteen build lessons**: unchanged in substance, now rendered as pages with module, time and artefact chips.
+## Provenance
 
-## Five modules, all rewritten
-
-Every module is now Hermes-native writing, not converted OpenClaw text. Each follows the same shape:
-what you are making, why it matters, the ideas that actually matter, a warning callout about the standard
-failure, a checklist handover, five or six executable checks, and a sealing rule.
-
-| Module | Artefact | The idea it earns |
-|---|---|---|
-| 1 agentic revolution | `position/agent-map.md` | the ability ladder: retrieve, transform, draft, decide, act |
-| 2 ai literacy | `language/prompt-library.md` | tokens, context pressure, sampling, and checkable prompts |
-| 3 building agents | `build/my-agent/` | profile, soul, rules, skills, tools, cron, three tests |
-| 4 strategy and ethics | `strategy/business-case.md` | value in hours and dollars, a risk register, a disclosure rule |
-| 5 advanced orchestration | `build/workflow/` | four patterns, two handover mechanisms, an honest failure rate |
-
-## Videos
-
-`tools/video.py` scroll-captures each page and encodes a walkthrough at `video/`: one per module plus the
-course map. Silent, small, and good enough to send to someone deciding whether to take the course.
-
-## Open items
-
-1. Model names and prices in module 2 are deliberately shape-first; refresh the specifics before each cohort.
-2. Spaced repetition is specified (scheduler in `skills/spaced-repetition/references/scheduler.py`) but not yet
-   wired to a cron job.
-3. The pages are local files. Serving them from aiorchestrator.com.au would make them shareable; that is a
-   separate publishing decision.
-
+Everything in `content/` was written for this Hermes edition in October 2026. What came before it, and what was
+replaced, is recorded in [PROVENANCE.md](PROVENANCE.md). The field-test results, including the rounds that
+failed, are in [FIELD-TESTS.md](FIELD-TESTS.md).
