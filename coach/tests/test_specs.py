@@ -71,6 +71,8 @@ with a link that opens and a sentence about what I did rather than what I felt.
 One person I will show it to by 20 December 2026: my old manager, who will tell me honestly whether it reads
 like a professional wrote it. I will send it on that date whether I feel ready or not, because the whole point
 is to be told what is wrong while there is still time to fix it.
+
+Stop doing: the two hours a fortnight I spend rebuilding the same spreadsheet by hand, starting on 1 November 2026.
 """)
 
 GOOD[4] = ('language/my-glossary.md', """# My glossary
@@ -87,6 +89,21 @@ GOOD[4] = ('language/my-glossary.md', """# My glossary
 | Grounding | Pinning an answer to a source document instead of the model's memory. |
 | Prompt | The instruction, plus the context, plus the format I want back. |
 | Agent | A loop of model, tools and memory that keeps going until the job is done. |
+| System prompt | The standing instruction the agent reads before anything else. |
+| Tool call | The model asking for a file to be read, with arguments. |
+| Guardrail | The rule that stops an action, written before the action exists. |
+| Autonomy | How much the agent does before it asks me again. |
+| Temperature | How random the next word is, which is not the same as quality. |
+| Grounding | Tying an answer to a document I supplied. |
+| Retrieval | Fetching the right three paragraphs instead of all forty pages. |
+| Fine tuning | Training on my examples, which I have never needed. |
+| Latency | The wait between asking and reading, which decides whether I use it. |
+| Inference | The model doing the work, as opposed to me reading the result. |
+
+In my job: Say: when I ask for the weekly promo, I say "give me three opening lines, no prices" because the
+prices live in the sheet and the sheet is right. Say: "read the quote and list the line items" beats "check
+this quote" every time, because the second one asks for an opinion I have not given it. Say: "mark anything you
+could not find in the file" is the sentence that turns a confident paragraph into a list of gaps.
 """)
 
 GOOD[5] = ('skills/installed.md', """# Skills I inspected
@@ -96,6 +113,10 @@ GOOD[5] = ('skills/installed.md', """# Skills I inspected
 | course-pages | When a lesson number is named | Maps lessons to page paths so links never drift |
 | knowledge-check | When a learner says they are done | Runs the fixed checks and refuses to mark its own work |
 | reminder | When a date is promised | Creates the scheduled job instead of saying it will |
+
+Test 1: asked "make the lesson page for lesson four" and course-pages fired. Output: the correct path, lesson-04.html.
+Test 2: asked "what is the weather" and nothing fired, which is right. Result: the routing depends on the noun,
+not on politeness.
 """)
 
 GOOD[6] = {
@@ -114,11 +135,15 @@ them, and stop after one follow-up: a second chase on the same quote is the sale
 
 If the quote file has no date, stop and say so rather than guessing from the filename. If the customer has
 already replied, do nothing at all: the skill exists for silence, not for chasing people who answered.
+
+The first version failed: it fired on quotes sent yesterday, because the description said "no reply yet" and
+the agent read the sent date as the quote date. The fix was to name the field, "the sent date in quote.md".
 """,
     'skills/quote-followup/test-log.md': """# Test log
 
-2026-10-27: ran on three old quotes. Two drafted correctly. One fired early because the quote date was a Friday,
-so the skill now counts working days only.
+2026-10-27: ran on three old quotes after the description fix. Test 1 output: draft produced for quote 41, correct tone, no discount.
+Test 2 output: no draft, because the reply had already arrived, which is the behaviour I wanted. One early fire
+came from a Friday quote date, so the skill now counts working days only.
 """,
 }
 
@@ -170,8 +195,9 @@ touches a client list. Next time I will log the raw body first and map it after.
 GOOD[12] = {
     'automate/morning-brief/run-log.md': """# Run log
 
-2026-10-27 daily 06:45 job fired and posted the brief. Second run 07:00 the same day skipped because the job
-is set to daily only.
+2026-10-27 06:45 AEST the daily job fired and posted the brief. 2026-10-28 06:45 AEST fired again, second
+consecutive success. 2026-10-26 06:45 the job did not run at all: the machine was asleep, which is the failure I
+had to design for. The fix was a wake timer plus a missed-run alert.
 """,
     'automate/morning-brief/job.md': """# Morning brief job
 
@@ -196,22 +222,31 @@ GOOD[14] = ('guardrails/drills.md', """# Drills
 | Empty folder | I removed the source file and asked again | It invented three rows rather than saying the folder was empty |
 | Bad key | I broke the API key | It reported a 401 honestly instead of retrying forever, which is the one failure it handled well |
 
-Two of three drills failed in a way I would have shipped: a confident wrong month and three invented rows. Both
-were caught by a person reading, not by the agent.
+Two of three drills failed in a way I would have shipped. The symptom in each case was a fluent answer with no
+warning, the cause was a source I had not checked, and the check that catches it is a date comparison against
+the filename. Both were caught by a person reading, not by the agent.
 """)
 
 GOOD[15] = {
     'build/published.md': """Portfolio: https://brendan.example.com
 Agent profile: https://github.com/bokanders/quote-agent
 """,
-    'build/account.md': """I built a quote calculator and an invoice sorter, and I published the portfolio with three pieces of work on
-it, each with a link a stranger can open. The calculator saves about forty minutes a week, measured against my
-own timesheet for the four weeks before it existed.
+    'build/account.md': """I built two things and published them where you can open them. The first is a quote calculator that saves me
+about forty minutes a week, measured against my own timesheet for the four weeks before it existed. The second
+is an invoice sorter that reads the invoices folder, pulls the supplier and the total, and files by month.
 
-The honest gap is that the sorter still needs a human on misspelled suppliers, which happens about once a
-fortnight. Next I am going to add a supplier alias list, run it for a fortnight beside the manual process, and
-only then tell anyone it works. I am also going to write the failure notes into the README, because the two
-invented rows scare me more than the missing feature.
+Both are small. Neither needed a database, a subscription or a team. What they needed was a fortnight of me
+noticing which parts of my week were the same every time, and refusing to let the agent guess at the rest. The
+calculator was straightforward once I wrote the pricing rules in the order I apply them. The sorter took longer,
+because suppliers write their names differently every month and the first version invented one rather than
+stopping.
+
+The portfolio has three cards, each with a link that loads and a date, written in first person with the
+adjectives removed.
+
+What I cannot do yet: the sorter still needs a human on misspelled suppliers, about once a fortnight, and I have
+not measured how often it is wrong in a way I would not notice. Next I will add a supplier alias list, run it
+beside the manual process for a fortnight, and only then tell anyone it works.
 """,
 }
 
@@ -254,7 +289,7 @@ def run(root, lesson):
 
 
 def verdict(out):
-    if 'RESULT all checks passed' in out:
+    if 'RESULT all machine checks passed' in out:
         return 'PASS'
     if 'RESULT failures' in out:
         return 'FAIL'

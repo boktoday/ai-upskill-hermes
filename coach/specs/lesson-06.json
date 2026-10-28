@@ -42,5 +42,8 @@
    "min": 100,
    "label": "the skill has real instructions"
   }
+ ],
+ "manual": [
+  "The skill fires on both requests after the fix, tested live."
  ]
 }

@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -292,6 +299,24 @@ th { background: #F3EDE5; font-weight: 650; }
 </div></header>
 <main class="wrap">
 <p class="lede"><p>A prompt library of five reusable prompts for your own work, each with a note on which model you would use and what would make the answer untrustworthy.</p></p>
+<figure class="diagram">
+<svg viewBox="0 0 620 250" role="img" aria-label="Context window pressure">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e2c29"/></marker></defs>
+<text x="40" y="34" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">One window, four claimants</text>
+<rect x="40" y="52" width="540" height="96" fill="#fbf8f1" stroke="#2e2c29" stroke-width="1.5"/>
+<rect x="40" y="52" width="150" height="96" fill="#e9e2d2" stroke="#d8d2c4" stroke-width="1"/>
+<text x="115" y="106" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">system rules</text>
+<rect x="190" y="52" width="130" height="96" fill="#dfe7d6" stroke="#d8d2c4" stroke-width="1"/>
+<text x="255" y="106" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">your files</text>
+<rect x="320" y="52" width="180" height="96" fill="#f2e3d2" stroke="#d8d2c4" stroke-width="1"/>
+<text x="410" y="106" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">conversation</text>
+<rect x="500" y="52" width="80" height="96" fill="#f6e7ec" stroke="#d8d2c4" stroke-width="1"/>
+<text x="540" y="106" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">reply room</text>
+<text x="40" y="180" font-size="11.5" font-weight="400" fill="#6b665e" text-anchor="start">Add a fifth thing and something falls out. That is context pressure, not a bug.</text>
+<text x="40" y="204" font-size="11" font-weight="400" fill="#6b665e" text-anchor="start">Cheapest fix first: summarise the history, narrow the files, then split the job.</text>
+</svg>
+<figcaption>A context window is shared, not unlimited. Pressure is normal; planning for it is the skill.</figcaption>
+</figure>
 <h2>Why it matters</h2>
 <p>You do not need to understand how a model works to use one badly. You do need three ideas, and they fit on a card: tokens, context and sampling. Everything else you will hear this year is either a product name or a sales claim.</p>
 <h2>Three ideas, properly understood</h2>

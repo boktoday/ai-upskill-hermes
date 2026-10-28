@@ -51,5 +51,8 @@
    ],
    "label": "no credentials stored in the card"
   }
+ ],
+ "manual": [
+  "The before and after are the same real document, not two invented ones."
  ]
 }

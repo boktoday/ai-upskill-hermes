@@ -27,6 +27,18 @@ MODULE_SOURCES = [
     (5, 'advanced-topics', 'Advanced topics', 'Multi-agent workflows and orchestration patterns'),
 ]
 
+RUBRICS = {}
+_rub = (BASE / 'content' / 'rubrics.md')
+if _rub.exists():
+    _txt = _rub.read_text(encoding='utf-8')
+    for _chunk in re.split(r'<!-- lesson-(\d\d) -->', _txt)[1:]:
+        pass
+    _parts = re.split(r'<!-- lesson-(\d\d) -->', _txt)
+    for _i in range(1, len(_parts), 2):
+        RUBRICS[int(_parts[_i])] = _parts[_i + 1].strip()
+
+import diagrams as _diagrams
+
 MODULE_OF = [(1, 'Position'), (2, 'Position'), (3, 'Position'), (4, 'Position'),
              (5, 'Language'), (6, 'Language'), (7, 'Language'),
              (8, 'Build'), (9, 'Build'), (10, 'Build'),
@@ -249,6 +261,10 @@ def build_lesson(num, path, prev_link, next_link):
         body = md_blocks('\n'.join(sec['lines']), steps_in=('your turn' in heading.lower()))
         accent = ' class="act"' if heading.lower().startswith(('your turn', 'the check', 'sealed when')) else ''
         parts.append('<h2%s>%s</h2>\n%s' % (accent, inline(heading), body))
+    if num in RUBRICS:
+        parts.append('<h2>The standard</h2>\n<p class="lede-note">Published before you start, so nobody is '
+                     'graded against a standard they have not seen. <a href="rubrics.html">All rubrics</a>.</p>\n'
+                     + md_blocks(RUBRICS[num]))
     chips = [meta.replace('·', '&middot;') if False else 'Module <b>%s</b>' % MODULE_OF[num - 1][1],
              'About <b>%s</b>' % (re.search(r'about (\d+) minutes', meta).group(1) + ' min'
                                   if re.search(r'about (\d+) minutes', meta) else '40 min')]
@@ -299,6 +315,9 @@ def build_module(num, slug, title, deck):
             continue
         accent = ' class="act"' if head.lower().startswith(('your turn', 'the check', 'sealed when', 'exercises')) else ''
         parts.append('<h2%s>%s</h2>\n%s' % (accent, inline(head), body))
+
+    if num in _diagrams.DIAGRAMS:
+        parts.insert(1 if parts else 0, _diagrams.figure(num))
 
     mins = re.search(r'about (\d+) minutes', meta)
     chips = ['Module <b>%d of 5</b>' % num,
@@ -365,6 +384,22 @@ day plan. Plus the habits that produced them.</p>
     (PAGES / 'index.html').write_text(out, encoding='utf-8')
 
 
+def build_rubrics():
+    src = BASE / 'content' / 'rubrics.md'
+    if not src.exists():
+        return None
+    md = src.read_text(encoding='utf-8')
+    body = md_blocks(md)
+    nav = ('<nav class="lesson-nav"><a href="index.html">&larr; Course map</a>'
+           '<a href="index.html" style="text-align:right">All lessons &rarr;</a></nav>')
+    out = page('The rubrics', 'AI Upskill &middot; Standards',
+               'What proficient looks like, for every artefact, before you start.',
+               ['<span><b>15</b> rubrics</span>', '<span><b>4</b> levels</span>', '<span>Shared <b>before</b> the work</span>'],
+               body, nav)
+    (PAGES / 'rubrics.html').write_text(out, encoding='utf-8')
+    return 'rubrics.html'
+
+
 def main():
     PAGES.mkdir(parents=True, exist_ok=True)
     files = sorted(LESSONS_DIR.glob('lesson-*.md'))
@@ -381,7 +416,10 @@ def main():
             m['deck'] = deck
             modules.append(m)
     build_index(infos, modules)
-    print('pages built:', len(infos) + len(modules) + 1)
+    extra = 1
+    if build_rubrics():
+        extra += 1
+    print('pages built:', len(infos) + len(modules) + extra)
     print('modules:', [(m['num'], m['chars']) for m in modules if m])
     print('index:', PAGES / 'index.html')
 

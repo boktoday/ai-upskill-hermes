@@ -29,6 +29,17 @@
     "catch"
    ],
    "label": "the table says what failure looks like"
+  },
+  {
+   "type": "absent",
+   "file": "guardrails/verification.md",
+   "patterns": [
+    "reviewed by me"
+   ],
+   "label": "no check is \"reviewed by me\""
   }
+ ],
+ "manual": [
+  "Every claim on the portfolio has a row, and the page now matches the log."
  ]
 }

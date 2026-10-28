@@ -12,8 +12,17 @@
   {
    "type": "words",
    "file": "build/account.md",
-   "min": 80,
-   "label": "the account explains what you built and what is next"
+   "min": 180,
+   "max": 220,
+   "label": "the account is 180 to 220 words"
+  },
+  {
+   "type": "present",
+   "file": "build/account.md",
+   "patterns": [
+    "(cannot|can not|did not)"
+   ],
+   "label": "the cannot line is present"
   },
   {
    "type": "has_any",
@@ -25,5 +34,8 @@
    ],
    "label": "the account looks forward"
   }
+ ],
+ "manual": [
+  "Every claim is supported by a link that loads, and the account is on the portfolio."
  ]
 }

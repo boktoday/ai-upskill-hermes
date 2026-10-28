@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The rubrics</title>
+<style>/* AI Upskill — course pages
+   One stylesheet for every lesson, module and the course map.
+   Design: charcoal and deep pink on warm paper, squared edges, no external assets. */
+
+:root {
+  --pink: #E67E9F;
+  --pink-deep: #B4526F;
+  --pink-wash: #FCEFF3;
+  --ink: #131313;
+  --ink-soft: #3A3835;
+  --steel: #738DA0;
+  --steel-wash: #EEF2F5;
+  --paper: #FBF7F2;
+  --card: #FFFFFF;
+  --line: #E3DCD2;
+  --ok: #3F7D5B;
+  --warn: #B26B1F;
+  --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 26px 24px 22px;
+  border-bottom: 5px solid var(--pink);
+}
+
+.masthead .inner { max-width: var(--measure); margin: 0 auto; }
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.masthead h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.deck { margin: 0; color: #D6D1CA; font-size: 15px; max-width: 34rem; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meta span {
+  background: #262524;
+  border: 1px solid #35322F;
+  color: #EDE9E3;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  padding: 5px 10px;
+}
+
+.meta span b { color: var(--pink); font-weight: 600; }
+.meta span.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0; }
+
+/* ---------- body ---------- */
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px 80px; }
+
+.lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 26px 0 4px;
+  padding-left: 16px;
+  border-left: 5px solid var(--pink);
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 44px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2.act { border-bottom-color: var(--pink); }
+h2.act::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--pink);
+  margin-top: -2px;
+}
+
+h3 { font-size: 18px; margin: 28px 0 6px; }
+h4 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin: 22px 0 4px; }
+
+p { margin: 0 0 14px; }
+a { color: var(--pink-deep); text-underline-offset: 2px; }
+
+ul, ol { margin: 6px 0 18px; padding-left: 22px; }
+li { margin: 7px 0; }
+li::marker { color: var(--steel); }
+
+strong { font-weight: 650; }
+
+code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #F1EBE3;
+  padding: 2px 6px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--ink);
+  color: #F4EFE7;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  border-left: 4px solid var(--pink);
+}
+
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; white-space: pre; }
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: var(--pink-wash);
+  border-left: 4px solid var(--pink);
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+
+/* ---------- tables ---------- */
+
+/* tables scroll sideways on phones rather than crushing the text */
+.tablewrap { overflow-x: auto; margin: 0 0 22px; -webkit-overflow-scrolling: touch; }
+.tablewrap table { margin: 0; min-width: 30rem; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 22px; font-size: 15px; }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #F3EDE5; font-weight: 650; }
+
+/* ---------- components ---------- */
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--steel);
+  background: var(--card);
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.callout.ok { border-left-color: var(--ok); background: #F3F8F4; }
+.callout.warn { border-left-color: var(--warn); background: #FBF4EA; }
+.callout.pink { border-left-color: var(--pink); background: var(--pink-wash); }
+.callout h4 { margin: 0 0 6px; color: inherit; font-size: 13px; letter-spacing: .1em; }
+
+.checklist { list-style: none; padding: 0; margin: 0 0 22px; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.checklist li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 15px; height: 15px;
+  margin-top: 4px;
+  border: 2px solid var(--ink);
+  background: transparent;
+}
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 22px; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 18px 44px;
+  margin: 0;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 650;
+}
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+.grid2 > div { background: var(--card); border: 1px solid var(--line); padding: 16px; }
+.grid2 h4 { margin-top: 0; }
+
+/* ---------- footer + nav ---------- */
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 3px solid var(--ink);
+  font-size: 14px;
+}
+.lesson-nav a { display: block; max-width: 48%; }
+
+.foot {
+  margin-top: 26px;
+  color: #6B6660;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- course map ---------- */
+
+.map { list-style: none; padding: 0; margin: 24px 0 0; }
+.map > li { border: 1px solid var(--line); background: var(--card); margin: 0 0 14px; }
+.map .module-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: #F7F2EB;
+}
+.map .module-head h3 { margin: 0; font-size: 17px; }
+.map .module-head span { font-size: 12.5px; color: var(--steel); letter-spacing: .06em; text-transform: uppercase; }
+.map ol { margin: 0; padding: 12px 16px 14px 40px; }
+.map ol li { margin: 5px 0; }
+.map .artefact { color: var(--steel); font-size: 13px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+.tile { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--pink); padding: 16px; }
+.tile .big { font-size: clamp(24px, 6vw, 32px); font-weight: 700; letter-spacing: -0.02em; display: block; }
+.tile .label { font-size: 13px; color: var(--steel); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { background: #fff; color: #000; border-bottom: 2pt solid #000; padding: 0 0 10pt; }
+  .masthead h1 { color: #000; }
+  .deck, .meta span { color: #000; }
+  .meta span { border-color: #000; }
+  .lesson-nav, .foot { display: none; }
+  h2 { break-after: avoid; }
+  pre, table, blockquote { break-inside: avoid; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 12px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .masthead { padding: 20px 18px 18px; }
+  .wrap { padding: 0 18px 64px; }
+}
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
+</style></head>
+<body>
+<header class="masthead"><div class="inner">
+  <p class="eyebrow">AI Upskill &amp;middot; Standards</p>
+  <h1>The rubrics</h1>
+  <p class="deck">What proficient looks like, for every artefact, before you start.</p>
+  <div class="meta"><span><span><b>15</b> rubrics</span></span><span><span><b>4</b> levels</span></span><span><span>Shared <b>before</b> the work</span></span></div>
+</div></header>
+<main class="wrap">
+<p># The rubrics</p>
+<p>Every artefact in this course is judged against the same four levels, published here before you start. The checker enforces the mechanical rules. A rubric is for the judgement a checker cannot make, and it is what the Saturday review uses, so nobody is graded against a standard they have not seen.</p>
+<p><strong>1 Novice</strong> means the file exists and little else. <strong>2 Developing</strong> means the shape is there but the thinking is borrowed or thin. <strong>3 Proficient</strong> means it would survive a manager reading it. <strong>4 Exemplary</strong> means a stranger could use it without you in the room.</p>
+<p>&lt;!-- lesson-01 --&gt; ## Lesson 1: your work, task by task</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Coverage</td><td>A handful of tasks, mostly job titles</td><td>Eight or more, but whole jobs mixed with tasks</td><td>Eight to twelve real tasks from one week</td><td>A week a stranger could map onto their own work</td></tr><tr><td>Labels</td><td>Labels missing or all the same</td><td>Labels present but argued</td><td>Each row labelled with the reason it earns</td><td>Every machine row names the machine and the input</td></tr><tr><td>Human-only reasons</td><td>"It matters to me"</td><td>Reasons about preference</td><td>Reasons about what a machine cannot do</td><td>Reasons a sceptical manager would accept</td></tr><tr><td>Honesty</td><td>Aspirational tasks you would like to do</td><td>Mostly real, one or two invented</td><td>All from the last fortnight</td><td>Includes the tasks you avoid</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-02 --&gt; ## Lesson 2: the rules you work under</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Four headings</td><td>One or two headings</td><td>All four, partly copied</td><td>All four in your own words</td><td>Specific enough to settle an argument</td></tr><tr><td>Redaction</td><td>None, or a surname deleted</td><td>One category changed</td><td>Three categories changed with placeholders</td><td>The after version still makes sense to a reader</td></tr><tr><td>Employer line</td><td>Absent or vague</td><td>Quoted policy</td><td>Your reading of the policy, or the strictest reading stated</td><td>A named person you would ask</td></tr><tr><td>Verification</td><td>"I would check it"</td><td>A general habit</td><td>A step you actually run</td><td>A step that caught something</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-03 --&gt; ## Lesson 3: your 90 day plan</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Dates</td><td>None</td><td>One date</td><td>Three dated commitments inside 90 days</td><td>Dates you have put in a calendar</td></tr><tr><td>Evidence</td><td>Wishes</td><td>Artefacts named but not described</td><td>Each commitment names its proof</td><td>Proof a stranger could check</td></tr><tr><td>Stop doing</td><td>Missing</td><td>Present but vague</td><td>A specific thing you will stop</td><td>Something you have already stopped</td></tr><tr><td>Cost</td><td>Depends on buying tools</td><td>Mentions free options</td><td>Costs nothing beyond your model bill</td><td>Cheaper than the time it saves</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-04 --&gt; ## Lesson 4: the words that get work done</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Terms</td><td>A few copied definitions</td><td>Twenty terms, definitions only</td><td>Twenty terms each with a Say line in your job</td><td>The glossary you would hand a new colleague</td></tr><tr><td>Say lines</td><td>Missing</td><td>Generic sentences</td><td>Concrete sentences naming your own work</td><td>Sentences you have said out loud</td></tr><tr><td>Trouble phrases</td><td>None</td><td>Listed</td><td>Five phrases each with a repair</td><td>Repairs you have tested</td></tr><tr><td>Range</td><td>Only chat terms</td><td>Chat and prompts</td><td>Chat, prompt, agent and guardrail terms</td><td>Covers the terms your industry argues about</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-05 --&gt; ## Lesson 5: what a skill actually is</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Install</td><td>Read about skills</td><td>Installed one, untested</td><td>Installed and triggered</td><td>Installed two and know why each routes</td></tr><tr><td>Evidence</td><td>Described</td><td>One test pasted</td><td>Both tests pasted with outcomes</td><td>The transcript shows the failure too</td></tr><tr><td>Routing</td><td>Cannot explain</td><td>Guesses</td><td>Names the words in the description that routed</td><td>Rewrote the description to change the routing</td></tr><tr><td>Secrets</td><td>A key in the file</td><td>A key mentioned</td><td>Key location named, value absent</td><td>Key in a manager, documented</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-06 --&gt; ## Lesson 6: teach your agent once</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Description</td><td>Missing or vague</td><td>Present but describes rather than triggers</td><td>Trigger first and short enough to route</td><td>Routes on two different phrasings</td></tr><tr><td>Steps</td><td>Prose</td><td>Mostly prose with some commands</td><td>Imperative steps in order</td><td>Steps a stranger could follow without asking</td></tr><tr><td>Check</td><td>None</td><td>"It looked right"</td><td>A runnable check</td><td>A check that failed once and was fixed</td></tr><tr><td>Failure</td><td>Not attempted</td><td>Noticed but unexplained</td><td>One real failure found and fixed</td><td>The fix is recorded with what it taught you</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-07 --&gt; ## Lesson 7: your first mini app</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Live</td><td>Runs on your machine only</td><td>Deployed but broken</td><td>Loads with no console errors</td><td>Loads in under two seconds</td></tr><tr><td>Phone</td><td>Horizontal scrolling</td><td>Fits but cramped</td><td>Usable at 390 pixels</td><td>Designed for the phone first</td></tr><tr><td>Task</td><td>A demo of a form</td><td>Half a task</td><td>One real task completed</td><td>Somebody else used it for that task</td></tr><tr><td>Ownership</td><td>No name</td><td>A name</td><td>Name and purpose on the page</td><td>A way to report a bug</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-08 --&gt; ## Lesson 8: an agent that does a chore</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Runs</td><td>Only inside the chat</td><td>A script that needs tweaking</td><td>One command from a clean terminal</td><td>Runs on a machine that is not yours</td></tr><tr><td>Guardrail</td><td>A comment</td><td>A warning</td><td>A human step before anything leaves</td><td>The step is logged</td></tr><tr><td>Log</td><td>Rehearsal</td><td>One line</td><td>A real run with time and outcome</td><td>Several runs showing what changed</td></tr><tr><td>Credentials</td><td>Key in the folder</td><td>Key in a file nearby</td><td>Location named, value absent</td><td>Key scoped and rotated</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-09 --&gt; ## Lesson 9: your portfolio</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Links</td><td>None that load</td><td>One working link</td><td>Every card links to something that loads</td><td>Every link still loads a month later</td></tr><tr><td>Wording</td><td>Adjectives</td><td>Mixed first and third person</td><td>First person, no adjectives</td><td>Reads like you speak</td></tr><tr><td>Dates</td><td>Missing</td><td>One date</td><td>A date on every card</td><td>Dates that show progress</td></tr><tr><td>Phone</td><td>Broken</td><td>Scrolls sideways</td><td>Works at phone width</td><td>Looks deliberate on a phone</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-10 --&gt; ## Lesson 10: what an API is, and what it is not</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Calls</td><td>Documentation quoted</td><td>One real call</td><td>Two real calls with real status codes</td><td>A call you built into something</td></tr><tr><td>Errors</td><td>None</td><td>An error mentioned</td><td>One failure with its cause</td><td>A failure you diagnosed by reading the code</td></tr><tr><td>Permission</td><td>Cannot say</td><td>Vague</td><td>Names which part is the key and which is the address</td><td>Explains scope in plain words</td></tr><tr><td>Secrets</td><td>Key in the file</td><td>Key redacted by hand</td><td>Key location named, never the value</td><td>Key never touched your notes</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-11 --&gt; ## Lesson 11: connected tools and webhooks</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Event</td><td>Screenshot of docs</td><td>One event, no body</td><td>A real event with its payload</td><td>A second event proving the shape</td></tr><tr><td>Scope</td><td>Unknown</td><td>Named connection</td><td>Connection and scope recorded</td><td>Scope reduced after review</td></tr><tr><td>Fields</td><td>None identified</td><td>One field</td><td>Two meaningful fields and one noise field</td><td>A field you were wrong about</td></tr><tr><td>Safety</td><td>A trigger that sends</td><td>Destructive trigger with a warning</td><td>Nothing destructive without a human step</td><td>A test that proves it cannot fire</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-12 --&gt; ## Lesson 12: clocks, what a cronjob is</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Schedule</td><td>"Every morning"</td><td>Five fields, no timezone</td><td>Five fields, plain English, timezone named</td><td>Handles daylight saving</td></tr><tr><td>Runs</td><td>None</td><td>One manual run</td><td>One manual and one on time</td><td>A week of runs</td></tr><tr><td>Failure</td><td>Unnoticed</td><td>Recorded</td><td>Recorded with the fix that makes it speak</td><td>Alerted you before you noticed</td></tr><tr><td>Idempotence</td><td>Duplicates output</td><td>Unknown</td><td>Safe to run twice</td><td>Proven safe with a second run</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-13 --&gt; ## Lesson 13: verify before you trust</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Coverage</td><td>One claim checked</td><td>Several, chosen for luck</td><td>Every claim on the portfolio has a row</td><td>Rows added before the claims were made</td></tr><tr><td>Repeatable</td><td>"Reviewed by me"</td><td>A description of a check</td><td>A step another person could run</td><td>Somebody else ran it</td></tr><tr><td>Failures</td><td>None recorded</td><td>An honest miss</td><td>At least one failure recorded</td><td>The failure changed how you work</td></tr><tr><td>Match</td><td>Log and page disagree</td><td>Mostly agree</td><td>Page updated to match the log</td><td>The log is public</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-14 --&gt; ## Lesson 14: failure drills</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Drills</td><td>Read about failures</td><td>One caused</td><td>Three caused, with symptom, cause and check</td><td>A fourth you invented</td></tr><tr><td>Causation</td><td>Imagined</td><td>Half caused</td><td>Caused and reproducible</td><td>Caused on somebody else's machine</td></tr><tr><td>Fixes</td><td>Missing</td><td>Suggested</td><td>Written beside each drill</td><td>Fixed and re-tested</td></tr><tr><td>Safety</td><td>Harmed something real</td><td>Came close</td><td>Nothing real touched</td><td>A sandbox you built first</td></tr></tbody></table></div>
+<p>&lt;!-- lesson-15 --&gt; ## Lesson 15: ship and tell</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Claims</td><td>Adjectives</td><td>Claims with some support</td><td>Every claim supported by a link</td><td>A sceptic checked and agreed</td></tr><tr><td>The cannot line</td><td>Missing or a boast</td><td>Present but vague</td><td>Specific and honest</td><td>It cost you something to write</td></tr><tr><td>Length</td><td>Under 100 or over 400 words</td><td>Close to the range</td><td>180 to 220 words</td><td>Every sentence earns its place</td></tr><tr><td>Placement</td><td>In a file</td><td>On the portfolio</td><td>Live and linked</td><td>Sent to a person who replied</td></tr></tbody></table></div>
+<nav class="lesson-nav"><a href="index.html">&larr; Course map</a><a href="index.html" style="text-align:right">All lessons &rarr;</a></nav>
+<p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
+</main></body></html>

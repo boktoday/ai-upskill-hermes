@@ -1,4 +1,5 @@
 shots/*.png
 shots/*.pdf
 _frames/
+_recall_demo/
 __pycache__/

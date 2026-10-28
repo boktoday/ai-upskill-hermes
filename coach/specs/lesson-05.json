@@ -29,6 +29,27 @@
     "fires"
    ],
    "label": "the log talks about triggers"
+  },
+  {
+   "type": "present",
+   "file": "skills/installed.md",
+   "patterns": [
+    "test",
+    "(output|outcome|result)"
+   ],
+   "label": "both test outcomes are pasted"
+  },
+  {
+   "type": "absent",
+   "file": "skills/installed.md",
+   "patterns": [
+    "sk-[A-Za-z0-9]{16,}",
+    "gh[pousr]_[A-Za-z0-9]{20,}"
+   ],
+   "label": "no secret pasted into the log"
   }
+ ],
+ "manual": [
+  "You can say which words in the description did the routing."
  ]
 }

@@ -6,9 +6,9 @@
   {
    "type": "rows",
    "file": "language/my-glossary.md",
-   "min": 10,
+   "min": 20,
    "max": 60,
-   "label": "at least ten terms"
+   "label": "twenty terms"
   },
   {
    "type": "col",
@@ -27,6 +27,19 @@
    "file": "language/my-glossary.md",
    "min": 150,
    "label": "the definitions are written out"
+  },
+  {
+   "type": "has_any",
+   "file": "language/my-glossary.md",
+   "any_of": [
+    "say:",
+    "say ",
+    "in my job"
+   ],
+   "label": "entries carry a Say line from your own work"
   }
+ ],
+ "manual": [
+  "At least three terms come from the agent section: skill, tool call, verification, guardrail."
  ]
 }

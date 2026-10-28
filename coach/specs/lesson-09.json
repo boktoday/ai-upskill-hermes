@@ -14,6 +14,17 @@
    "file": "build/portfolio-url.md",
    "min": 20,
    "label": "the note says what three things it proves"
+  },
+  {
+   "type": "present",
+   "file": "build/portfolio-url.md",
+   "patterns": [
+    "\\bI\\b"
+   ],
+   "label": "written in first person"
   }
+ ],
+ "manual": [
+  "Every card says what you did, in first person, without adjectives, and the page works at phone width."
  ]
 }

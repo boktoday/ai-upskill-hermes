@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -291,6 +298,9 @@ th { background: #F3EDE5; font-weight: 650; }
   <div class="meta"><span>Module <b>Language</b></span><span>About <b>40 min</b></span><span>Artefact <b>skills/installed.md</b></span><span>Lesson <b>5 of 15</b></span></div>
 </div></header>
 <main class="wrap">
+<h2>Recall</h2>
+<p>Answer in a line each, out loud or here, before the new material. Retrieval first, teaching second.</p>
+<ol><li>In one line, what is the difference between a prompt and the context around it?</li><li>Which three terms from your glossary do you still use loosely?</li><li>What does context mean in your own job, in your own words?</li></ol>
 <p class="lede"><p>One skill installed on your machine, and proof of when it fires and when it does not.</p></p>
 <h2>Why it matters</h2>
 <p>A prompt is spent once. A skill is a procedure saved so the agent loads it whenever a matching task appears, without you remembering anything. The description is the routing signal: the first line decides whether the agent finds the skill at all. Learning to read and test that line is the new literacy.</p>
@@ -303,6 +313,10 @@ th { background: #F3EDE5; font-weight: 650; }
 <p>Failure signs: a skill installed but never triggered, or a test that was described rather than run.</p>
 <h2 class="act">Sealed when</h2>
 <p><code>skills/installed.md</code> holds the source, the two runs and the routing sentence, and the student has formed one opinion about the description.</p>
+<h2>The standard</h2>
+<p class="lede-note">Published before you start, so nobody is graded against a standard they have not seen. <a href="rubrics.html">All rubrics</a>.</p>
+<p>## Lesson 5: what a skill actually is</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Install</td><td>Read about skills</td><td>Installed one, untested</td><td>Installed and triggered</td><td>Installed two and know why each routes</td></tr><tr><td>Evidence</td><td>Described</td><td>One test pasted</td><td>Both tests pasted with outcomes</td><td>The transcript shows the failure too</td></tr><tr><td>Routing</td><td>Cannot explain</td><td>Guesses</td><td>Names the words in the description that routed</td><td>Rewrote the description to change the routing</td></tr><tr><td>Secrets</td><td>A key in the file</td><td>A key mentioned</td><td>Key location named, value absent</td><td>Key in a manager, documented</td></tr></tbody></table></div>
 <nav class="lesson-nav"><a href="lesson-04.html">&larr; Lesson 4</a><a href="lesson-06.html" style="text-align:right">Lesson 6 &rarr;</a></nav>
 <p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
 </main></body></html>

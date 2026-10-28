@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -291,6 +298,9 @@ th { background: #F3EDE5; font-weight: 650; }
   <div class="meta"><span>Module <b>Build</b></span><span>About <b>50 min</b></span><span>Artefact <b>connect/api-log.md</b></span><span>Lesson <b>10 of 15</b></span></div>
 </div></header>
 <main class="wrap">
+<h2>Recall</h2>
+<p>Answer in a line each, out loud or here, before the new material. Retrieval first, teaching second.</p>
+<ol><li>Which card on your portfolio was hardest to write without adjectives?</li><li>Which link did you have to fix, and how did you find it?</li><li>What date is on the oldest card, and is it honest?</li></ol>
 <p class="lede"><p>A log of two real API calls you made yourself, request and response, and a plain-English note on what each one proved.</p></p>
 <h2>Why it matters</h2>
 <p>An API is how one program asks another to do something, and almost everything you will automate rests on it. It is not magic and it is not a chat: it is an address, a permission and a shaped answer. Once you can read a request and a response, the whole automation layer stops being mysterious.</p>
@@ -303,6 +313,10 @@ th { background: #F3EDE5; font-weight: 650; }
 <p>Failure signs: a log made of documentation quotes, or a key visible in the file.</p>
 <h2 class="act">Sealed when</h2>
 <p><code>connect/api-log.md</code> holds two calls, one failure, and no secret, and the student explains the four parts without notes.</p>
+<h2>The standard</h2>
+<p class="lede-note">Published before you start, so nobody is graded against a standard they have not seen. <a href="rubrics.html">All rubrics</a>.</p>
+<p>## Lesson 10: what an API is, and what it is not</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Calls</td><td>Documentation quoted</td><td>One real call</td><td>Two real calls with real status codes</td><td>A call you built into something</td></tr><tr><td>Errors</td><td>None</td><td>An error mentioned</td><td>One failure with its cause</td><td>A failure you diagnosed by reading the code</td></tr><tr><td>Permission</td><td>Cannot say</td><td>Vague</td><td>Names which part is the key and which is the address</td><td>Explains scope in plain words</td></tr><tr><td>Secrets</td><td>Key in the file</td><td>Key redacted by hand</td><td>Key location named, never the value</td><td>Key never touched your notes</td></tr></tbody></table></div>
 <nav class="lesson-nav"><a href="lesson-09.html">&larr; Lesson 9</a><a href="lesson-11.html" style="text-align:right">Lesson 11 &rarr;</a></nav>
 <p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
 </main></body></html>

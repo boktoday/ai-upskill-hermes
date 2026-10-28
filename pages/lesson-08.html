@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -291,6 +298,9 @@ th { background: #F3EDE5; font-weight: 650; }
   <div class="meta"><span>Module <b>Build</b></span><span>About <b>60 min</b></span><span>Artefact <b>build/chore/</b></span><span>Lesson <b>8 of 15</b></span></div>
 </div></header>
 <main class="wrap">
+<h2>Recall</h2>
+<p>Answer in a line each, out loud or here, before the new material. Retrieval first, teaching second.</p>
+<ol><li>What does your mini app do, in one line a stranger would understand?</li><li>What broke at phone width, and what did you change?</li><li>Has anybody other than you used it, and what did they do with it?</li></ol>
 <p class="lede"><p>A small repeatable workflow that does a real chore for you, with one guardrail, and a log of a real run.</p></p>
 <h2>Why it matters</h2>
 <p>Using an AI on demand is a conversation. Directing one on a schedule is a system. The difference is what makes you an orchestrator rather than a user: the work happens without you starting it.</p>
@@ -304,6 +314,10 @@ th { background: #F3EDE5; font-weight: 650; }
 <p>Failure signs: a workflow that only exists as a chat transcript, or a guardrail that is a comment rather than a step.</p>
 <h2 class="act">Sealed when</h2>
 <p>A real run is logged, the guardrail is demonstrated, and the folder is committed or archived.</p>
+<h2>The standard</h2>
+<p class="lede-note">Published before you start, so nobody is graded against a standard they have not seen. <a href="rubrics.html">All rubrics</a>.</p>
+<p>## Lesson 8: an agent that does a chore</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Runs</td><td>Only inside the chat</td><td>A script that needs tweaking</td><td>One command from a clean terminal</td><td>Runs on a machine that is not yours</td></tr><tr><td>Guardrail</td><td>A comment</td><td>A warning</td><td>A human step before anything leaves</td><td>The step is logged</td></tr><tr><td>Log</td><td>Rehearsal</td><td>One line</td><td>A real run with time and outcome</td><td>Several runs showing what changed</td></tr><tr><td>Credentials</td><td>Key in the folder</td><td>Key in a file nearby</td><td>Location named, value absent</td><td>Key scoped and rotated</td></tr></tbody></table></div>
 <nav class="lesson-nav"><a href="lesson-07.html">&larr; Lesson 7</a><a href="lesson-09.html" style="text-align:right">Lesson 9 &rarr;</a></nav>
 <p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
 </main></body></html>

@@ -25,6 +25,17 @@
    "file": "guardrails/drills.md",
    "min": 100,
    "label": "written up, not a tick list"
+  },
+  {
+   "type": "present",
+   "file": "guardrails/drills.md",
+   "patterns": [
+    "(symptom|cause|check)"
+   ],
+   "label": "each drill records symptom, cause and check"
   }
+ ],
+ "manual": [
+  "Each failure was actually caused, not read about, and nothing real was harmed."
  ]
 }

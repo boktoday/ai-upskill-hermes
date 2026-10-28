@@ -21,6 +21,22 @@
    "type": "present",
    "file": "connect/api-log.md",
    "patterns": [
+    "(error|fail|wrong|broken)"
+   ],
+   "label": "one failure is recorded with its cause"
+  },
+  {
+   "type": "absent",
+   "file": "connect/api-log.md",
+   "patterns": [
+    "sk-[A-Za-z0-9]{16,}"
+   ],
+   "label": "no key value in the log"
+  },
+  {
+   "type": "present",
+   "file": "connect/api-log.md",
+   "patterns": [
     "\\{[^}]*\\}"
    ],
    "label": "a response shape is recorded"
@@ -41,5 +57,8 @@
    "min": 100,
    "label": "written up in your own words"
   }
+ ],
+ "manual": [
+  "Two real calls were made, and you can say which part of the call was permission and which was the address."
  ]
 }

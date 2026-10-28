@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -292,6 +299,26 @@ th { background: #F3EDE5; font-weight: 650; }
 </div></header>
 <main class="wrap">
 <p class="lede"><p>A working agent of your own: a profile folder with a soul, operating rules, two skills and a scheduled job, plus the three tests that prove it does what you claim.</p></p>
+<figure class="diagram">
+<svg viewBox="0 0 620 300" role="img" aria-label="The agent loop">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e2c29"/></marker></defs>
+<text x="40" y="30" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">Model, tool, observation, repeat</text>
+<rect x="240" y="44" width="140" height="46" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="310" y="72" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Model</text>
+<rect x="50" y="132" width="120" height="46" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="110" y="160" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Tool</text>
+<rect x="240" y="220" width="140" height="46" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="310" y="248" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Observation</text>
+<rect x="450" y="132" width="120" height="46" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="510" y="160" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Your rule</text>
+<line x1="276" y1="92" x2="176" y2="130" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="150" y="96" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">asks</text>
+<line x1="176" y1="168" x2="262" y2="218" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="196" y="208" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">runs</text>
+<line x1="330" y1="220" x2="330" y2="92" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="338" y="158" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">learns</text>
+<line x1="450" y1="142" x2="386" y2="70" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="520" y="104" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">stops or continues</text>
+<text x="40" y="292" font-size="11.5" font-weight="400" fill="#6b665e" text-anchor="start">No stop condition, no loop: that is an agent that spends your money.</text>
+</svg>
+<figcaption>The loop that makes an agent an agent. Take away the stop condition and it becomes a bill.</figcaption>
+</figure>
 <h2>Why it matters</h2>
 <p>Anyone can prompt a chat window. Almost nobody can hand another person a folder that behaves like a competent colleague on Monday morning without them present. That folder is the whole difference between using AI and orchestrating it.</p>
 <div class="callout "><h4>A word about the old edition</h4><p>Earlier versions of this module taught a different product's four-file agent model. Hermes works differently: an agent is a profile, its abilities are skills, and its hands are tools. This module is rewritten for Hermes and every command here runs on the machine you are reading this on.</p></div>

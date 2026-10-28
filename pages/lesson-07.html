@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -291,6 +298,9 @@ th { background: #F3EDE5; font-weight: 650; }
   <div class="meta"><span>Module <b>Language</b></span><span>About <b>60 min</b></span><span>Artefact <b>a live URL</b></span><span>Lesson <b>7 of 15</b></span></div>
 </div></header>
 <main class="wrap">
+<h2>Recall</h2>
+<p>Answer in a line each, out loud or here, before the new material. Retrieval first, teaching second.</p>
+<ol><li>What is your skill description, trigger first?</li><li>What failure did the test find, and what did you change?</li><li>Which step did you have to rewrite as an imperative?</li></ol>
 <p class="lede"><p>One page that does one useful thing for a real person, published at a public address.</p></p>
 <h2>Why it matters</h2>
 <p>A portfolio of screenshots proves nothing. A link that loads proves you can finish something, and finishing is the skill employers and clients actually pay for. This is the smallest possible complete build.</p>
@@ -305,6 +315,10 @@ th { background: #F3EDE5; font-weight: 650; }
 <p>Failure signs: a 404, a page that only exists locally, or an interaction that needs an explanation to find.</p>
 <h2 class="act">Sealed when</h2>
 <p>The URL is live, passes the four checks, and is written into <code>progress.json</code> as the first portfolio piece.</p>
+<h2>The standard</h2>
+<p class="lede-note">Published before you start, so nobody is graded against a standard they have not seen. <a href="rubrics.html">All rubrics</a>.</p>
+<p>## Lesson 7: your first mini app</p>
+<div class="tablewrap"><table><thead><tr><th>Criterion</th><th>1 Novice</th><th>2 Developing</th><th>3 Proficient</th><th>4 Exemplary</th></tr></thead><tbody><tr><td>Live</td><td>Runs on your machine only</td><td>Deployed but broken</td><td>Loads with no console errors</td><td>Loads in under two seconds</td></tr><tr><td>Phone</td><td>Horizontal scrolling</td><td>Fits but cramped</td><td>Usable at 390 pixels</td><td>Designed for the phone first</td></tr><tr><td>Task</td><td>A demo of a form</td><td>Half a task</td><td>One real task completed</td><td>Somebody else used it for that task</td></tr><tr><td>Ownership</td><td>No name</td><td>A name</td><td>Name and purpose on the page</td><td>A way to report a bug</td></tr></tbody></table></div>
 <nav class="lesson-nav"><a href="lesson-06.html">&larr; Lesson 6</a><a href="lesson-08.html" style="text-align:right">Lesson 8 &rarr;</a></nav>
 <p class="foot">AI Upskill, Hermes edition. Converted from the March 2026 course and rewritten for Hermes. Private, local, yours.</p>
 </main></body></html>

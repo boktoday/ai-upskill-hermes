@@ -32,6 +32,19 @@
    "file": "position/pathway.md",
    "min": 100,
    "label": "long enough to be useful"
+  },
+  {
+   "type": "has_any",
+   "file": "position/pathway.md",
+   "any_of": [
+    "stop doing",
+    "stop-doing",
+    "i will stop"
+   ],
+   "label": "the plan has a stop-doing line"
   }
+ ],
+ "manual": [
+  "The three dates are in your calendar, not just on the page."
  ]
 }

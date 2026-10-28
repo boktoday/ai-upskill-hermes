@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -292,6 +299,28 @@ th { background: #F3EDE5; font-weight: 650; }
 </div></header>
 <main class="wrap">
 <p class="lede"><p>A one-page case for one AI change in your work: what it costs, what it saves, who could be harmed, and the rule that stops the harm.</p></p>
+<figure class="diagram">
+<svg viewBox="0 0 620 290" role="img" aria-label="Where AI pays">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e2c29"/></marker></defs>
+<line x1="80" y1="240" x2="580" y2="240" stroke="#2e2c29" stroke-width="1.5"/>
+<line x1="80" y1="240" x2="80" y2="50" stroke="#2e2c29" stroke-width="1.5"/>
+<text x="330" y="266" font-size="11" font-weight="400" fill="#6b665e" text-anchor="middle">repetition &#8594;</text>
+<text x="52" y="150" font-size="11" fill="#6b665e" transform="rotate(-90 52 150)" text-anchor="middle">judgement &#8594;</text>
+<rect x="80" y="50" width="250" height="95" fill="#eef1e8" stroke="#d8d2c4" stroke-width="1"/>
+<text x="205" y="88" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">Keep human</text>
+<text x="205" y="108" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">judgement, no repetition</text>
+<rect x="330" y="50" width="250" height="95" fill="#f6e7ec" stroke="#d8d2c4" stroke-width="1"/>
+<text x="455" y="88" font-size="12" font-weight="600" fill="#c2517a" text-anchor="middle">Orchestrate</text>
+<text x="455" y="108" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">where the money is</text>
+<rect x="80" y="145" width="250" height="95" fill="#fbf8f1" stroke="#d8d2c4" stroke-width="1"/>
+<text x="205" y="183" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">Automate whole</text>
+<text x="205" y="203" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">cheap, low risk</text>
+<rect x="330" y="145" width="250" height="95" fill="#f3ecdd" stroke="#d8d2c4" stroke-width="1"/>
+<text x="455" y="183" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">Draft and check</text>
+<text x="455" y="203" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">your first win</text>
+</svg>
+<figcaption>Most people automate the bottom left and miss the top right, where the money actually is.</figcaption>
+</figure>
 <h2>Why it matters</h2>
 <p>Half the AI projects in Australian businesses this year will be approved because someone was enthusiastic and cancelled because nobody measured anything. The page you write today is the difference between being the person who bought a tool and the person who made a case.</p>
 <h2>Where the money actually is</h2>

@@ -15,5 +15,8 @@
    "min": 25,
    "label": "the note says what it does and who it is for"
   }
+ ],
+ "manual": [
+  "The URL loads with no console errors, is usable at 390px, and the one interaction completes a real task."
  ]
 }

@@ -23,10 +23,10 @@ both.
 
 | Path | What it is |
 |---|---|
-| `pages/` | Twenty-one self-contained pages: a course map, five module pages, fifteen lesson pages. One stylesheet, no tracking, no network calls. |
+| `pages/` | Twenty-two self-contained pages: a course map, five module pages, fifteen lesson pages and the rubrics. One stylesheet, no tracking, no network calls. |
 | `content/` | The five modules as markdown, if you would rather read plain text or translate it. |
 | `video/` | Six silent walkthroughs, one per module plus the course map. |
-| `coach/` | The fixed checkers and their specs. This is the part that stops an agent marking its own homework. |
+| `coach/` | The fixed checkers, their specs, and the spaced-recall scheduler. This is the part that stops an agent marking its own homework. |
 | `tools/` | The renderer, the video builder and the page screenshots. |
 
 ## Read it
@@ -65,6 +65,7 @@ Run it yourself at any time:
 ```
 python coach/check.py 1          # checks position/tasks.md against lesson 1
 python coach/check.py --list     # every lesson and the artefact it expects
+python coach/recall.py --due     # spaced recall: what is due today
 ```
 
 Each check names the file, the rule, and what would fix it. No account, no upload, no scoring service: your

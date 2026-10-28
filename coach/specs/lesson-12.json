@@ -27,6 +27,35 @@
     "daily"
    ],
    "label": "the log shows when it ran"
+  },
+  {
+   "type": "has_any",
+   "file": "automate/*/*log*",
+   "any_of": [
+    "UTC",
+    "AEST",
+    "AEDT",
+    "local",
+    "timezone"
+   ],
+   "label": "the timezone is named"
+  },
+  {
+   "type": "dates",
+   "file": "automate/*/*log*",
+   "min": 2,
+   "label": "two runs are logged"
+  },
+  {
+   "type": "present",
+   "file": "automate/*/*log*",
+   "patterns": [
+    "(fail|error|missed|did not run)"
+   ],
+   "label": "one deliberate failure is recorded"
   }
+ ],
+ "manual": [
+  "One run was on time and one started by hand."
  ]
 }

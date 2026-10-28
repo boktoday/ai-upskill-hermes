@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -292,6 +299,28 @@ th { background: #F3EDE5; font-weight: 650; }
 </div></header>
 <main class="wrap">
 <p class="lede"><p>A one-page map of where agents already touch your work, what they still cannot do, and the first task you will hand to one.</p></p>
+<figure class="diagram">
+<svg viewBox="0 0 620 320" role="img" aria-label="The ability ladder">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e2c29"/></marker></defs>
+<text x="30" y="28" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">Where work sits on the ladder</text>
+<text x="590" y="28" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="end">more judgement handed over &#8594;</text>
+<rect x="30" y="250" width="96" height="48" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="78" y="279" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Retrieve</text>
+<text x="78" y="314" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">find it</text>
+<rect x="142" y="208" width="96" height="48" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="190" y="237" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Transform</text>
+<text x="190" y="272" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">reshape it</text>
+<line x1="130" y1="248" x2="139" y2="220" stroke="#2e2c29" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<rect x="254" y="166" width="96" height="48" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="302" y="195" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Draft</text>
+<text x="302" y="230" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">first version</text>
+<line x1="242" y1="206" x2="251" y2="178" stroke="#2e2c29" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<rect x="366" y="124" width="96" height="48" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="414" y="153" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Decide</text>
+<text x="414" y="188" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">choose</text>
+<line x1="354" y1="164" x2="363" y2="136" stroke="#2e2c29" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<rect x="478" y="82" width="96" height="48" rx="0" fill="#f6e7ec" stroke="#c2517a" stroke-width="1.5"/><text x="526" y="111" font-size="13" font-weight="600" fill="#2e2c29" text-anchor="middle">Act</text>
+<text x="526" y="146" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="middle">change things</text>
+<line x1="466" y1="122" x2="475" y2="94" stroke="#2e2c29" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+</svg>
+<figcaption>The ability ladder. Each rung hands the machine more of the decision, and each rung needs more of your judgement around it.</figcaption>
+</figure>
 <h2>Why it matters</h2>
 <p>Two people will lose their jobs in the next two years: the one who thought agents were magic, and the one who thought they were nothing. The map you make today is how you avoid both, because it separates what an agent can genuinely carry from what only looks like it can.</p>
 <h2>What an agent actually is</h2>

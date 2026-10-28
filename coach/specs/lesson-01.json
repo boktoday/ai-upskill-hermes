@@ -78,6 +78,16 @@
     "\\b(manager|coordinator|specialist|officer|executive)\\b"
    ],
    "label": "no row reads as a whole job"
+  },
+  {
+   "type": "absent",
+   "file": "position/tasks.md",
+   "patterns": [
+    "important to me",
+    "because it matters"
+   ],
+   "label": "no human-only reason is \"it matters to me\""
   }
- ]
+ ],
+ "manual": []
 }

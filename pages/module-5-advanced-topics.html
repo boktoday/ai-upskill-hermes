@@ -282,6 +282,13 @@ th { background: #F3EDE5; font-weight: 650; }
   .masthead { padding: 20px 18px 18px; }
   .wrap { padding: 0 18px 64px; }
 }
+
+/* diagrams: dual coding, one per module */
+figure.diagram{margin:2rem 0 2.2rem;padding:1.1rem 1rem .9rem;background:#fbf8f1;border-left:3px solid #c2517a}
+figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram figcaption{margin-top:.7rem;font-size:.86rem;line-height:1.45;color:#6b665e}
+.lede-note{font-size:.9rem;color:#6b665e;margin:-.2rem 0 1.2rem}
+@media print{figure.diagram{break-inside:avoid;background:#fff;border-left:2px solid #000}}
 </style></head>
 <body>
 <header class="masthead"><div class="inner">
@@ -292,6 +299,42 @@ th { background: #F3EDE5; font-weight: 650; }
 </div></header>
 <main class="wrap">
 <p class="lede"><p>A two-agent workflow that produces one real output, with the handover, the check and the failure path all written down.</p></p>
+<figure class="diagram">
+<svg viewBox="0 0 620 350" role="img" aria-label="Four orchestration patterns">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e2c29"/></marker></defs>
+<text x="30" y="34" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">Pipeline</text>
+<rect x="30" y="46" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="56" y="70" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">A</text>
+<rect x="112" y="46" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="138" y="70" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">B</text>
+<rect x="194" y="46" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="220" y="70" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">C</text>
+<line x1="84" y1="65" x2="108" y2="65" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="166" y1="65" x2="190" y2="65" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="30" y="104" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">produces, checks, publishes</text>
+<text x="330" y="34" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">Fan-out</text>
+<rect x="330" y="46" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="356" y="70" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">A</text>
+<rect x="432" y="42" width="62" height="28" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="463" y="61" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">B</text>
+<rect x="432" y="78" width="62" height="28" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="463" y="97" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">C</text>
+<line x1="384" y1="60" x2="428" y2="55" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="384" y1="72" x2="428" y2="90" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="330" y="126" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">one brief, many workers</text>
+<text x="30" y="172" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">Critic</text>
+<rect x="30" y="190" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="56" y="214" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">A</text>
+<rect x="140" y="190" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="166" y="214" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">B</text>
+<line x1="84" y1="209" x2="136" y2="209" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="110" y="202" font-size="10" font-weight="400" fill="#6b665e" text-anchor="middle">draft</text>
+<line x1="140" y1="186" x2="56" y2="186" stroke="#2e2c29" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<text x="98" y="172" font-size="10" font-weight="400" fill="#6b665e" text-anchor="middle">attack</text>
+<text x="30" y="250" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">draft, attack, revise</text>
+<text x="330" y="172" font-size="12" font-weight="600" fill="#c2517a" text-anchor="start">Router</text>
+<rect x="330" y="190" width="52" height="38" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="356" y="214" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">A</text>
+<rect x="432" y="182" width="62" height="28" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="463" y="201" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">B</text>
+<rect x="432" y="218" width="62" height="28" rx="0" fill="#f7f2e7" stroke="#2e2c29" stroke-width="1.5"/><text x="463" y="237" font-size="12" font-weight="600" fill="#2e2c29" text-anchor="middle">C</text>
+<line x1="384" y1="202" x2="428" y2="196" stroke="#2e2c29" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="384" y1="216" x2="428" y2="232" stroke="#2e2c29" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<text x="330" y="278" font-size="10.5" font-weight="400" fill="#6b665e" text-anchor="start">picks one specialist</text>
+<text x="30" y="336" font-size="11.5" font-weight="400" fill="#6b665e" text-anchor="start">Start with a pipeline. It is the only one you can debug at two in the morning.</text>
+</svg>
+<figcaption>The four patterns worth knowing, drawn small enough to remember.</figcaption>
+</figure>
 <h2>Why it matters</h2>
 <p>One agent is a tool. Two agents that check each other is a system, and a system is what survives a busy Tuesday. This module is where the word "orchestrator" stops being a job title and becomes a folder you built.</p>
 <h2>The four patterns worth knowing</h2>

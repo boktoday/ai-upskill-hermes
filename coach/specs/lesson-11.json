@@ -24,6 +24,25 @@
    "file": "connect/event-log.md",
    "min": 80,
    "label": "written up in your own words"
+  },
+  {
+   "type": "present",
+   "file": "connect/event-log.md",
+   "patterns": [
+    "(payload|body)"
+   ],
+   "label": "the payload is shown, not described"
+  },
+  {
+   "type": "absent",
+   "file": "connect/event-log.md",
+   "patterns": [
+    "(auto-?send|auto-?delete|auto-?pay)"
+   ],
+   "label": "nothing destructive is wired without a human step"
   }
+ ],
+ "manual": [
+  "Two fields are identified as meaningful and one as noise, and you know why."
  ]
 }

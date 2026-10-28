@@ -199,7 +199,11 @@ def main():
         print('%s  %s  (%s)' % ('PASS' if ok else 'FAIL', label, detail))
         if not ok:
             failures.append(label)
-    print('RESULT %s' % ('all checks passed' if not failures else 'failures: ' + '; '.join(failures)))
+    for item in spec.get('manual', []):
+        print('MANUAL  %s' % item)
+    print('RESULT %s' % ('all machine checks passed' + (' (manual checks above still need a human)'
+                                                       if spec.get('manual') else '')
+                         if not failures else 'failures: ' + '; '.join(failures)))
     return 0 if not failures else 1
 
 
